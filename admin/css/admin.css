@@ -57,9 +57,9 @@ a:hover{text-decoration:underline}
 .sidebar .sub{font-size:.78rem;color:rgba(246,243,237,.58);margin-bottom:28px}
 .nav{display:grid;gap:4px;flex:1;overflow:auto}
 .nav button{display:flex;align-items:center;gap:.6rem;width:100%;text-align:left;padding:.65rem .85rem;border:none;border-radius:10px;background:transparent;color:rgba(246,243,237,.78);cursor:pointer;font-weight:500;font-size:.92rem}
-.nav button:hover,.nav button.active{background:rgba(248,239,231,.08);color:var(--paper)}
+.nav button:hover,.nav button.active{background:rgba(246,243,237,.08);color:var(--paper)}
 .nav button.active{background:rgba(91,168,212,.2);color:var(--paper)}
-.sidebar-foot{margin-top:auto;padding-top:20px;border-top:1px solid rgba(248,239,231,.12);display:grid;gap:8px}
+.sidebar-foot{margin-top:auto;padding-top:20px;border-top:1px solid rgba(246,243,237,.12);display:grid;gap:8px}
 .sidebar-foot a,.sidebar-foot button{font-size:.85rem}
 
 .main{display:flex;flex-direction:column;min-width:0}
