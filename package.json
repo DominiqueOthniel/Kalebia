@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node server/index.js",
     "dev": "node server/index.js",
+    "build": "node scripts/build-netlify.js",
     "sync": "node -e \"require('./server/site-store').syncSiteDataJs().then(()=>console.log('site-data.js synchronisé'))\""
   },
   "engines": {
