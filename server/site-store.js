@@ -1,9 +1,32 @@
 const fs = require('fs').promises;
+const { accessSync } = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const DATA_FILE = path.join(ROOT, 'data', 'site.json');
+
+function resolveDataFile() {
+  const candidates = [
+    path.join(ROOT, 'data', 'site.json'),
+    path.join(__dirname, '..', '..', 'data', 'site.json'),
+    path.join('/var/task', 'data', 'site.json'),
+  ];
+  for (const file of candidates) {
+    try {
+      accessSync(file);
+      return file;
+    } catch {
+      /* fichier absent à cet emplacement */
+    }
+  }
+  return path.join(ROOT, 'data', 'site.json');
+}
+
+const DATA_FILE = resolveDataFile();
 const SITE_DATA_JS = path.join(ROOT, 'public', 'js', 'site-data.js');
+
+function isServerless() {
+  return Boolean(process.env.AWS_LAMBDA_FUNCTION_NAME || process.env.NETLIFY);
+}
 
 async function readSite() {
   const raw = await fs.readFile(DATA_FILE, 'utf8');
@@ -11,6 +34,9 @@ async function readSite() {
 }
 
 async function writeSite(data) {
+  if (isServerless()) {
+    throw new Error('La sauvegarde n’est pas disponible sur l’hébergement statique Netlify.');
+  }
   await fs.writeFile(DATA_FILE, JSON.stringify(data, null, 2) + '\n', 'utf8');
   await syncSiteDataJs(data);
 }

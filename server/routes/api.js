@@ -38,12 +38,17 @@ router.put('/admin/site', requireAuth, async (req, res) => {
   try {
     await writeSite(req.body);
     res.json({ ok: true });
-  } catch {
-    res.status(500).json({ error: 'Erreur lors de la sauvegarde.' });
+  } catch (err) {
+    const msg = err && err.message ? err.message : 'Erreur lors de la sauvegarde.';
+    res.status(500).json({ error: msg });
   }
 });
 
 router.post('/admin/upload', requireAuth, upload.single('file'), async (req, res) => {
+  if (process.env.AWS_LAMBDA_FUNCTION_NAME || process.env.NETLIFY) {
+    res.status(501).json({ error: 'Les uploads ne sont pas disponibles sur Netlify. Utilisez le serveur local (npm start).' });
+    return;
+  }
   try {
     if (!req.file) {
       res.status(400).json({ error: 'Fichier manquant ou format non autorisé.' });

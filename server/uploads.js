@@ -28,7 +28,7 @@ const storage = multer.diskStorage({
   filename: (req, file, cb) => {
     const ext = path.extname(file.originalname).toLowerCase();
     if (req.body.type === 'cv') {
-      cb(null, 'CV-Kalebie-Nyoue-Franck' + (ext || '.pdf'));
+      cb(null, 'CV-Kalebia-Nyoue-Franck' + (ext || '.pdf'));
       return;
     }
     if (req.body.type === 'project-splash') {

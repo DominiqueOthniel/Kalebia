@@ -35,7 +35,7 @@ async function testPublicPages() {
   console.log('\n=== Site public ===');
 
   const home = await fetchText(`${BASE}/`);
-  if (home.res.status === 200 && home.text.includes('Kalebie')) pass('GET /', '200 OK');
+  if (home.res.status === 200 && home.text.includes('Kalebia')) pass('GET /', '200 OK');
   else fail('GET /', `status ${home.res.status}`);
 
   for (const asset of [
@@ -66,7 +66,7 @@ async function testPublicPages() {
   } else fail('GET /admin redirect', String(adminRedirect.status));
 
   const adminPage = await fetchText(`${BASE}/admin/`);
-  if (adminPage.res.ok && adminPage.text.includes('Back office Kalebie')) {
+  if (adminPage.res.ok && adminPage.text.includes('Back office Kalebia')) {
     pass('GET /admin/', 'page admin servie');
   } else fail('GET /admin/', String(adminPage.res.status));
 
@@ -253,7 +253,7 @@ async function testAssets() {
 }
 
 async function main() {
-  console.log('Tests Kalebie —', BASE);
+  console.log('Tests Kalebia —', BASE);
   try {
     await fetch(`${BASE}/`);
   } catch (e) {

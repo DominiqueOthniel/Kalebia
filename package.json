@@ -2,7 +2,7 @@
   "name": "kalebia-portfolio",
   "version": "1.1.0",
   "private": true,
-  "description": "Portfolio Kalebie Nyoue Franck avec back office intégré",
+  "description": "Portfolio Kalebia Nyoue Franck avec back office intégré",
   "scripts": {
     "start": "node server/index.js",
     "dev": "node server/index.js",
@@ -15,6 +15,7 @@
   "dependencies": {
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "multer": "^1.4.5-lts.1"
+    "multer": "^1.4.5-lts.1",
+    "serverless-http": "^4.0.0"
   }
 }

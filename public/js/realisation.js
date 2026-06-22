@@ -35,7 +35,7 @@
   function renderProject(project, data) {
     var name = ((data.profile?.firstName || '') + ' ' + (data.profile?.lastName || '')).trim();
     var title = project.company || project.title;
-    document.title = title + ' · ' + (name || 'Kalebie Nyoue Franck');
+    document.title = title + ' · ' + (name || 'Kalebia Nyoue Franck');
 
     document.getElementById('detail-head').innerHTML =
       '<span class="eyebrow">' + esc(project.kind || 'Réalisation') + '</span>' +
