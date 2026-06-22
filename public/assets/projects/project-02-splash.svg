@@ -3,23 +3,23 @@
   <defs>
     <linearGradient id="p02bg" x1="0" y1="675" x2="1200" y2="0" gradientUnits="userSpaceOnUse">
       <stop stop-color="#f1e4d6"/>
-      <stop offset=".5" stop-color="#f4a024"/>
-      <stop offset="1" stop-color="#ff5640"/>
+      <stop offset=".5" stop-color="#d4b483"/>
+      <stop offset="1" stop-color="#5ba8d4"/>
     </linearGradient>
   </defs>
   <rect width="1200" height="675" fill="url(#p02bg)"/>
-  <rect x="120" y="100" width="200" height="200" rx="16" fill="#f8efe7"/>
-  <rect x="120" y="100" width="200" height="120" rx="16" fill="#7a2e8c"/>
-  <circle cx="200" cy="250" r="20" fill="#ff5640"/>
+  <rect x="120" y="100" width="200" height="200" rx="16" fill="#f6f3ed"/>
+  <rect x="120" y="100" width="200" height="120" rx="16" fill="#1a3054"/>
+  <circle cx="200" cy="250" r="20" fill="#5ba8d4"/>
   <rect x="340" y="140" width="200" height="200" rx="16" fill="#159e8e"/>
-  <text x="440" y="250" text-anchor="middle" fill="#f8efe7" font-family="Arial,sans-serif" font-size="36" font-weight="700">x3</text>
-  <rect x="560" y="80" width="200" height="200" rx="16" fill="#201326"/>
-  <rect x="580" y="110" width="160" height="100" rx="10" fill="#f4a024"/>
-  <rect x="780" y="120" width="200" height="200" rx="16" fill="#f8efe7"/>
-  <circle cx="830" cy="170" r="30" fill="#ff5640"/>
-  <rect x="440" y="380" width="320" height="180" rx="20" fill="#201326"/>
-  <text x="600" y="450" text-anchor="middle" fill="#f8efe7" font-family="Arial,sans-serif" font-size="28" font-weight="700">Communaute creative</text>
-  <text x="600" y="485" text-anchor="middle" fill="#f8efe7" fill-opacity=".55" font-family="Arial,sans-serif" font-size="14">Formats UGC Partenariats</text>
+  <text x="440" y="250" text-anchor="middle" fill="#f6f3ed" font-family="Arial,sans-serif" font-size="36" font-weight="700">x3</text>
+  <rect x="560" y="80" width="200" height="200" rx="16" fill="#0f1f3d"/>
+  <rect x="580" y="110" width="160" height="100" rx="10" fill="#d4b483"/>
+  <rect x="780" y="120" width="200" height="200" rx="16" fill="#f6f3ed"/>
+  <circle cx="830" cy="170" r="30" fill="#5ba8d4"/>
+  <rect x="440" y="380" width="320" height="180" rx="20" fill="#0f1f3d"/>
+  <text x="600" y="450" text-anchor="middle" fill="#f6f3ed" font-family="Arial,sans-serif" font-size="28" font-weight="700">Communaute creative</text>
+  <text x="600" y="485" text-anchor="middle" fill="#f6f3ed" fill-opacity=".55" font-family="Arial,sans-serif" font-size="14">Formats UGC Partenariats</text>
   <rect x="520" y="510" width="160" height="32" rx="16" fill="#159e8e"/>
-  <text x="600" y="532" text-anchor="middle" fill="#f8efe7" font-family="Arial,sans-serif" font-size="12" font-weight="600">Engagement x3</text>
+  <text x="600" y="532" text-anchor="middle" fill="#f6f3ed" font-family="Arial,sans-serif" font-size="12" font-weight="600">Engagement x3</text>
 </svg>

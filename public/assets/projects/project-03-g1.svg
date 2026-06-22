@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
-  <rect width="400" height="400" rx="16" fill="#f8efe7"/>
-  <rect x="24" y="24" width="352" height="60" rx="10" fill="#201326"/>
-  <text x="200" y="62" text-anchor="middle" fill="#f4a024" font-family="Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="3">PLANNING</text>
-  <rect x="40" y="110" width="320" height="12" rx="6" fill="#201326" fill-opacity=".08"/>
+  <rect width="400" height="400" rx="16" fill="#f6f3ed"/>
+  <rect x="24" y="24" width="352" height="60" rx="10" fill="#0f1f3d"/>
+  <text x="200" y="62" text-anchor="middle" fill="#d4b483" font-family="Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="3">PLANNING</text>
+  <rect x="40" y="110" width="320" height="12" rx="6" fill="#0f1f3d" fill-opacity=".08"/>
   <rect x="40" y="110" width="240" height="12" rx="6" fill="#159e8e"/>
-  <rect x="40" y="150" width="320" height="12" rx="6" fill="#201326" fill-opacity=".08"/>
-  <rect x="40" y="150" width="280" height="12" rx="6" fill="#ff5640"/>
-  <rect x="40" y="240" width="320" height="100" rx="12" fill="#201326"/>
-  <text x="200" y="295" text-anchor="middle" fill="#f8efe7" font-family="Arial,sans-serif" font-size="28" font-weight="700">0 retard</text>
+  <rect x="40" y="150" width="320" height="12" rx="6" fill="#0f1f3d" fill-opacity=".08"/>
+  <rect x="40" y="150" width="280" height="12" rx="6" fill="#5ba8d4"/>
+  <rect x="40" y="240" width="320" height="100" rx="12" fill="#0f1f3d"/>
+  <text x="200" y="295" text-anchor="middle" fill="#f6f3ed" font-family="Arial,sans-serif" font-size="28" font-weight="700">0 retard</text>
 </svg>

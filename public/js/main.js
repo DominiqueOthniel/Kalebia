@@ -225,8 +225,8 @@
       var s = document.createElement('span');
       var lvl = Math.random();
       var op = lvl < 0.3 ? 0.10 : lvl < 0.55 ? 0.28 : lvl < 0.78 ? 0.55 : lvl < 0.92 ? 0.8 : 1;
-      var col = lvl > 0.92 ? '#ff5640' : (lvl > 0.78 ? '#f4a024' : '#f8efe7');
-      s.style.background = col === '#f8efe7' ? 'rgba(248,239,231,' + op + ')' : col;
+      var col = lvl > 0.92 ? '#5ba8d4' : (lvl > 0.78 ? '#d4b483' : '#f6f3ed');
+      s.style.background = col === '#f6f3ed' ? 'rgba(246,243,237,' + op + ')' : col;
       frag.appendChild(s);
       hmArr.push(s);
     }

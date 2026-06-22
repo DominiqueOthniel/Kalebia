@@ -1,14 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500" fill="none">
   <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="400" y2="500" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#7a2e8c"/>
-      <stop offset=".55" stop-color="#ff5640"/>
-      <stop offset="1" stop-color="#f4a024"/>
+    <linearGradient id="g" x1="40" y1="20" x2="360" y2="480" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1a3054"/>
+      <stop offset=".55" stop-color="#5ba8d4"/>
+      <stop offset="1" stop-color="#d4b483"/>
     </linearGradient>
   </defs>
-  <rect width="400" height="500" fill="url(#bg)"/>
-  <circle cx="200" cy="175" r="72" fill="rgba(248,239,231,.14)"/>
-  <text x="200" y="198" text-anchor="middle" fill="#f8efe7" font-family="system-ui,sans-serif" font-size="56" font-weight="800">KNF</text>
-  <text x="200" y="320" text-anchor="middle" fill="rgba(248,239,231,.55)" font-family="system-ui,sans-serif" font-size="14" letter-spacing="4">PHOTO À REMPLACER</text>
-  <text x="200" y="345" text-anchor="middle" fill="rgba(248,239,231,.4)" font-family="system-ui,sans-serif" font-size="12">assets/portrait.jpg</text>
+  <rect width="400" height="500" fill="url(#g)"/>
+  <circle cx="200" cy="170" r="72" fill="rgba(246,243,237,.18)"/>
+  <text x="200" y="198" text-anchor="middle" fill="#f6f3ed" font-family="system-ui,sans-serif" font-size="56" font-weight="800">KNF</text>
 </svg>

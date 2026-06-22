@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
-  <rect width="400" height="400" rx="16" fill="#201326"/>
+  <rect width="400" height="400" rx="16" fill="#0f1f3d"/>
   <rect x="24" y="24" width="352" height="200" rx="12" fill="#159e8e"/>
-  <text x="200" y="110" text-anchor="middle" fill="#f8efe7" font-family="Arial,sans-serif" font-size="20" font-weight="700">Teasing J-7</text>
-  <text x="200" y="145" text-anchor="middle" fill="#f8efe7" fill-opacity=".6" font-family="Arial,sans-serif" font-size="13">Countdown Stories</text>
-  <rect x="44" y="320" width="100" height="32" rx="16" fill="#ff5640"/>
-  <text x="94" y="342" text-anchor="middle" fill="#f8efe7" font-family="Arial,sans-serif" font-size="12" font-weight="600">Swipe up</text>
+  <text x="200" y="110" text-anchor="middle" fill="#f6f3ed" font-family="Arial,sans-serif" font-size="20" font-weight="700">Teasing J-7</text>
+  <text x="200" y="145" text-anchor="middle" fill="#f6f3ed" fill-opacity=".6" font-family="Arial,sans-serif" font-size="13">Countdown Stories</text>
+  <rect x="44" y="320" width="100" height="32" rx="16" fill="#5ba8d4"/>
+  <text x="94" y="342" text-anchor="middle" fill="#f6f3ed" font-family="Arial,sans-serif" font-size="12" font-weight="600">Swipe up</text>
 </svg>

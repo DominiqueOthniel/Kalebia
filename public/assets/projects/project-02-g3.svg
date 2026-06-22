@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
-  <rect width="400" height="400" rx="16" fill="#201326"/>
-  <circle cx="80" cy="80" r="36" fill="#ff5640"/>
+  <rect width="400" height="400" rx="16" fill="#0f1f3d"/>
+  <circle cx="80" cy="80" r="36" fill="#5ba8d4"/>
   <circle cx="160" cy="80" r="36" fill="#159e8e"/>
-  <circle cx="240" cy="80" r="36" fill="#f4a024"/>
-  <circle cx="320" cy="80" r="36" fill="#7a2e8c"/>
-  <rect x="40" y="140" width="320" height="180" rx="14" fill="#f8efe7" fill-opacity=".08"/>
-  <text x="200" y="220" text-anchor="middle" fill="#f8efe7" font-family="Arial,sans-serif" font-size="18" font-weight="700">Programme createurs</text>
-  <text x="200" y="250" text-anchor="middle" fill="#f8efe7" fill-opacity=".5" font-family="Arial,sans-serif" font-size="12">Partenariats UGC Ambassadeurs</text>
-  <rect x="120" y="340" width="160" height="32" rx="16" fill="#ff5640"/>
-  <text x="200" y="362" text-anchor="middle" fill="#f8efe7" font-family="Arial,sans-serif" font-size="11" font-weight="600">Rejoindre</text>
+  <circle cx="240" cy="80" r="36" fill="#d4b483"/>
+  <circle cx="320" cy="80" r="36" fill="#1a3054"/>
+  <rect x="40" y="140" width="320" height="180" rx="14" fill="#f6f3ed" fill-opacity=".08"/>
+  <text x="200" y="220" text-anchor="middle" fill="#f6f3ed" font-family="Arial,sans-serif" font-size="18" font-weight="700">Programme createurs</text>
+  <text x="200" y="250" text-anchor="middle" fill="#f6f3ed" fill-opacity=".5" font-family="Arial,sans-serif" font-size="12">Partenariats UGC Ambassadeurs</text>
+  <rect x="120" y="340" width="160" height="32" rx="16" fill="#5ba8d4"/>
+  <text x="200" y="362" text-anchor="middle" fill="#f6f3ed" font-family="Arial,sans-serif" font-size="11" font-weight="600">Rejoindre</text>
 </svg>

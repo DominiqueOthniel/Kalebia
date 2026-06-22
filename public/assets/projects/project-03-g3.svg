@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
   <rect width="400" height="400" rx="16" fill="#f1e4d6"/>
-  <rect x="30" y="30" width="340" height="200" rx="14" fill="#f8efe7" stroke="#201326" stroke-opacity=".08"/>
+  <rect x="30" y="30" width="340" height="200" rx="14" fill="#f6f3ed" stroke="#0f1f3d" stroke-opacity=".08"/>
   <rect x="50" y="55" width="80" height="80" rx="8" fill="#159e8e"/>
-  <rect x="50" y="155" width="280" height="55" rx="8" fill="#ff5640" fill-opacity=".12"/>
-  <text x="190" y="188" text-anchor="middle" fill="#ff5640" font-family="Arial,sans-serif" font-size="13" font-weight="700">Budget OK</text>
-  <rect x="30" y="250" width="340" height="120" rx="14" fill="#201326"/>
-  <text x="200" y="310" text-anchor="middle" fill="#f8efe7" font-family="Arial,sans-serif" font-size="16" font-weight="700">Campagne 360</text>
-  <text x="200" y="340" text-anchor="middle" fill="#f8efe7" fill-opacity=".5" font-family="Arial,sans-serif" font-size="12">Prestataires Equipes Delais</text>
+  <rect x="50" y="155" width="280" height="55" rx="8" fill="#5ba8d4" fill-opacity=".12"/>
+  <text x="190" y="188" text-anchor="middle" fill="#5ba8d4" font-family="Arial,sans-serif" font-size="13" font-weight="700">Budget OK</text>
+  <rect x="30" y="250" width="340" height="120" rx="14" fill="#0f1f3d"/>
+  <text x="200" y="310" text-anchor="middle" fill="#f6f3ed" font-family="Arial,sans-serif" font-size="16" font-weight="700">Campagne 360</text>
+  <text x="200" y="340" text-anchor="middle" fill="#f6f3ed" fill-opacity=".5" font-family="Arial,sans-serif" font-size="12">Prestataires Equipes Delais</text>
 </svg>
