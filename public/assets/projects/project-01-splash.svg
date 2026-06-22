@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    <linearGradient id="p01bg" x1="0" y1="0" x2="1200" y2="675" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#201326"/>
+      <stop offset=".45" stop-color="#7a2e8c"/>
+      <stop offset="1" stop-color="#ff5640"/>
+    </linearGradient>
+    <linearGradient id="p01ph" x1="490" y1="130" x2="710" y2="550" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#159e8e"/>
+      <stop offset="1" stop-color="#f4a024"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#p01bg)"/>
+  <rect x="80" y="180" width="240" height="240" rx="18" fill="#f8efe7"/>
+  <rect x="80" y="180" width="240" height="48" rx="18" fill="#ff5640"/>
+  <rect x="100" y="310" width="200" height="90" rx="12" fill="#7a2e8c"/>
+  <text x="200" y="365" text-anchor="middle" fill="#f8efe7" font-family="Arial,sans-serif" font-size="22" font-weight="700">+34K</text>
+  <rect x="470" y="95" width="260" height="500" rx="36" fill="#1a1020" stroke="#f8efe7" stroke-opacity=".2" stroke-width="3"/>
+  <rect x="490" y="130" width="220" height="420" rx="8" fill="url(#p01ph)"/>
+  <text x="600" y="300" text-anchor="middle" fill="#f8efe7" font-family="Arial,sans-serif" font-size="28" font-weight="700">PayApp</text>
+  <rect x="530" y="360" width="140" height="36" rx="18" fill="#f8efe7"/>
+  <text x="600" y="384" text-anchor="middle" fill="#201326" font-family="Arial,sans-serif" font-size="13" font-weight="700">Download</text>
+  <rect x="860" y="220" width="220" height="280" rx="18" fill="#f8efe7"/>
+  <rect x="860" y="220" width="220" height="140" rx="18" fill="#159e8e"/>
+  <text x="970" y="295" text-anchor="middle" fill="#f8efe7" font-family="Arial,sans-serif" font-size="16" font-weight="700">Teasing</text>
+  <text x="600" y="640" text-anchor="middle" fill="#f8efe7" fill-opacity=".45" font-family="Arial,sans-serif" font-size="13" letter-spacing="4">CAMPAGNE FINTECH LANCEMENT</text>
+</svg>

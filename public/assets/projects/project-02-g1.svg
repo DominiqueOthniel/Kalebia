@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <rect width="400" height="400" rx="16" fill="#7a2e8c"/>
+  <rect x="40" y="60" width="320" height="200" rx="12" fill="#f8efe7" fill-opacity=".15"/>
+  <text x="200" y="175" text-anchor="middle" fill="#f8efe7" font-family="Arial,sans-serif" font-size="48" font-weight="700">x3</text>
+  <text x="200" y="210" text-anchor="middle" fill="#f8efe7" fill-opacity=".65" font-family="Arial,sans-serif" font-size="13">taux engagement</text>
+  <rect x="40" y="290" width="320" height="60" rx="12" fill="#f8efe7"/>
+</svg>

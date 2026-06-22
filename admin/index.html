@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Back office — Kalebie</title>
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/admin/css/admin.css">
+</head>
+<body>
+
+<div id="login-screen" class="login-wrap">
+  <form class="login-card" id="login-form">
+    <h1>Back office Kalebie</h1>
+    <p>Connectez-vous pour modifier les textes, images et projets du portfolio.</p>
+    <p class="login-hint" style="margin-bottom:1rem;color:rgba(248,239,231,.55)">Ce n'est pas le site public — c'est le panneau d'édition.</p>
+    <div class="field">
+      <label for="login-password">Mot de passe</label>
+      <input type="password" id="login-password" required autocomplete="current-password" placeholder="••••••••">
+    </div>
+    <button type="button" class="btn btn-primary" id="login-btn" style="width:100%">Se connecter</button>
+    <p class="login-hint" id="login-hint"></p>
+    <p class="err" id="login-error" aria-live="polite"></p>
+  </form>
+</div>
+
+<div id="app-shell" class="shell hidden">
+  <aside class="sidebar">
+    <div class="logo">Kalebie Admin</div>
+    <div class="sub">Gestion du portfolio</div>
+    <nav class="nav" aria-label="Sections">
+      <button type="button" data-panel="overview" class="active">🏠 Vue d'ensemble</button>
+      <button type="button" data-panel="profil">👤 Profil &amp; SEO</button>
+      <button type="button" data-panel="hero">✨ Hero &amp; metrics</button>
+      <button type="button" data-panel="about">📷 À propos &amp; fichiers</button>
+      <button type="button" data-panel="expertise">🎯 Expertise</button>
+      <button type="button" data-panel="projects">💼 Réalisations</button>
+      <button type="button" data-panel="partners">🤝 Partenaires</button>
+      <button type="button" data-panel="impact">📊 Impact</button>
+      <button type="button" data-panel="method">🔄 Méthode</button>
+      <button type="button" data-panel="testimonial">💬 Témoignage</button>
+      <button type="button" data-panel="contact">📬 Contact &amp; social</button>
+    </nav>
+    <div class="sidebar-foot">
+      <a href="/" target="_blank" rel="noopener">↗ Voir le site</a>
+      <button type="button" class="btn btn-ghost btn-sm" id="btn-logout" style="color:rgba(248,239,231,.7);border-color:rgba(248,239,231,.2)">Déconnexion</button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div>
+        <span class="admin-badge">Mode édition</span>
+        <h1 id="page-title">Vue d'ensemble</h1>
+      </div>
+      <div class="topbar-actions">
+        <span class="save-state is-saved" id="save-state" aria-live="polite">Aucune modification</span>
+        <a href="/" target="_blank" class="btn btn-ghost btn-sm">Aperçu live</a>
+        <button type="button" class="btn btn-primary" id="btn-save" disabled>Enregistrer</button>
+      </div>
+    </header>
+    <div class="content">
+      <section class="panel active" id="panel-overview"></section>
+      <section class="panel" id="panel-profil"></section>
+      <section class="panel" id="panel-hero"></section>
+      <section class="panel" id="panel-about"></section>
+      <section class="panel" id="panel-expertise"></section>
+      <section class="panel" id="panel-projects"></section>
+      <section class="panel" id="panel-partners"></section>
+      <section class="panel" id="panel-impact"></section>
+      <section class="panel" id="panel-method"></section>
+      <section class="panel" id="panel-testimonial"></section>
+      <section class="panel" id="panel-contact"></section>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="/admin/js/admin.js?v=20260621-hci-ux"></script>
+</body>
+</html>

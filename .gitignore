@@ -1,0 +1,6 @@
+node_modules/
+.env
+*.log
+
+# Fichiers générés automatiquement (source : data/site.json)
+public/js/site-data.js

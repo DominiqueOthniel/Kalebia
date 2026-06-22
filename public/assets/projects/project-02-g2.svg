@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <rect width="400" height="400" rx="16" fill="#f8efe7"/>
+  <rect x="24" y="24" width="352" height="48" fill="#201326" rx="8"/>
+  <text x="200" y="55" text-anchor="middle" fill="#f4a024" font-family="Arial,sans-serif" font-size="12" font-weight="700" letter-spacing="3">FORMAT RECURRENT</text>
+  <rect x="40" y="96" width="150" height="150" rx="12" fill="#ff5640"/>
+  <rect x="210" y="96" width="150" height="150" rx="12" fill="#159e8e"/>
+  <rect x="40" y="266" width="150" height="110" rx="12" fill="#7a2e8c"/>
+  <rect x="210" y="266" width="150" height="110" rx="12" fill="#f4a024"/>
+</svg>

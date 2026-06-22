@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <rect width="400" height="400" rx="16" fill="#f8efe7"/>
+  <rect width="400" height="56" fill="#201326"/>
+  <circle cx="36" cy="28" r="14" fill="#ff5640"/>
+  <rect x="24" y="72" width="352" height="240" rx="12" fill="#7a2e8c"/>
+  <text x="200" y="200" text-anchor="middle" fill="#f8efe7" font-family="Arial,sans-serif" font-size="42" font-weight="700">+34K</text>
+  <text x="200" y="235" text-anchor="middle" fill="#f8efe7" fill-opacity=".7" font-family="Arial,sans-serif" font-size="13">abonnes en 4 mois</text>
+</svg>

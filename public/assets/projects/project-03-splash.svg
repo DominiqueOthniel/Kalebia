@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+  <defs>
+    <linearGradient id="p03bg" x1="600" y1="0" x2="600" y2="675" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#201326"/>
+      <stop offset="1" stop-color="#3a2940"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#p03bg)"/>
+  <rect width="1200" height="4" fill="#ff5640"/>
+  <line x1="150" y1="340" x2="1050" y2="340" stroke="#f8efe7" stroke-opacity=".15" stroke-width="3" stroke-dasharray="8 8"/>
+  <circle cx="200" cy="340" r="16" fill="#159e8e"/>
+  <rect x="130" y="200" width="140" height="100" rx="12" fill="#f8efe7"/>
+  <text x="200" y="260" text-anchor="middle" fill="#159e8e" font-family="Arial,sans-serif" font-size="22" font-weight="700">J1</text>
+  <circle cx="420" cy="340" r="16" fill="#f4a024"/>
+  <rect x="350" y="380" width="140" height="100" rx="12" fill="#f8efe7"/>
+  <text x="420" y="440" text-anchor="middle" fill="#f4a024" font-family="Arial,sans-serif" font-size="22" font-weight="700">J15</text>
+  <circle cx="640" cy="340" r="16" fill="#ff5640"/>
+  <rect x="570" y="200" width="140" height="100" rx="12" fill="#f8efe7"/>
+  <text x="640" y="260" text-anchor="middle" fill="#ff5640" font-family="Arial,sans-serif" font-size="22" font-weight="700">J30</text>
+  <circle cx="860" cy="340" r="16" fill="#7a2e8c"/>
+  <rect x="790" y="380" width="140" height="100" rx="12" fill="#f8efe7"/>
+  <text x="860" y="440" text-anchor="middle" fill="#7a2e8c" font-family="Arial,sans-serif" font-size="22" font-weight="700">J45</text>
+  <circle cx="1000" cy="340" r="20" fill="#159e8e" stroke="#f8efe7" stroke-width="3"/>
+  <rect x="180" y="520" width="840" height="100" rx="16" fill="#f8efe7" fill-opacity=".06" stroke="#f8efe7" stroke-opacity=".1"/>
+  <text x="600" y="560" text-anchor="middle" fill="#f8efe7" font-family="Arial,sans-serif" font-size="24" font-weight="700">12 livrables - 0 retard</text>
+  <text x="600" y="590" text-anchor="middle" fill="#f8efe7" fill-opacity=".45" font-family="Arial,sans-serif" font-size="13">Campagne 360 Multi-equipes Budget maitrise</text>
+</svg>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <rect width="400" height="400" rx="16" fill="#f4a024" fill-opacity=".15"/>
+  <rect x="80" y="60" width="240" height="280" rx="28" fill="#201326"/>
+  <rect x="100" y="90" width="200" height="200" rx="8" fill="#159e8e"/>
+  <text x="200" y="195" text-anchor="middle" fill="#f8efe7" font-family="Arial,sans-serif" font-size="24" font-weight="700">PayApp</text>
+  <rect x="130" y="220" width="140" height="36" rx="18" fill="#f8efe7"/>
+  <text x="200" y="244" text-anchor="middle" fill="#201326" font-family="Arial,sans-serif" font-size="12" font-weight="700">Disponible</text>
+</svg>

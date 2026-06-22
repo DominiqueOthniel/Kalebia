@@ -1,0 +1,255 @@
+{
+  "meta": {
+    "siteUrl": "https://kalebia.dev",
+    "title": "Kalebie Nyoue Franck · Project & Community Manager",
+    "description": "Kalebie Nyoue Franck, Project Manager & Community Manager à Douala. Des communautés qui vibrent, des projets qui aboutissent.",
+    "jobTitle": "Project & Community Manager"
+  },
+  "profile": {
+    "firstName": "Kalebia Nyoue",
+    "lastName": "Franck Olivier",
+    "location": "Douala · Cameroun · FR / EN",
+    "email": "bonjour@kalebia.dev",
+    "eyebrow": "Project Manager · Community Manager · Douala"
+  },
+  "hero": {
+    "thesis": "Des communautés qui vibrent. Des projets qui aboutissent.",
+    "lede": "J'accompagne les marques à transformer une audience en communauté engagée, et une idée en projet livré, du cadrage à la mesure.",
+    "headline": "Je transforme les communautés en leviers de croissance."
+  },
+  "portrait": "assets/portrait.png",
+  "cv": {
+    "path": "assets/CV-Kalebie-Nyoue-Franck.pdf",
+    "label": "Télécharger le CV"
+  },
+  "dashboard": {
+    "community": {
+      "count": 28,
+      "suffix": "K",
+      "label": "Communauté cumulée"
+    },
+    "engagement": {
+      "count": 6.8,
+      "suffix": "%",
+      "dec": 1,
+      "label": "Taux d'engagement"
+    }
+  },
+  "marquee": [
+    "Stratégie de contenu",
+    "Animation de communauté",
+    "Pilotage de projet",
+    "Croissance organique",
+    "Calendrier éditorial",
+    "Coordination d'équipe"
+  ],
+  "about": {
+    "title": "Je fais le lien entre les gens, les marques et les délais.",
+    "paragraphs": [
+      "À la croisée du <strong>contenu</strong>, de la <strong>stratégie</strong> et de la <strong>coordination</strong>, j'aide les équipes à construire des communautés vivantes et à mener leurs projets jusqu'au lancement.",
+      "Mon terrain de jeu : les réseaux sociaux, les calendriers éditoriaux, les campagnes, et tout ce qui transforme une bonne idée en résultat mesurable. Bilingue français / anglais, basé à Douala."
+    ],
+    "tags": [
+      "Community management",
+      "Gestion de projet",
+      "Stratégie social media",
+      "Création de contenu",
+      "Reporting & analytics",
+      "Partenariats créateurs"
+    ]
+  },
+  "expertise": {
+    "title": "Deux casquettes, une seule logique : faire avancer les choses.",
+    "subtitle": "Je couvre la chaîne complète, de la voix de la marque au suivi du dernier livrable.",
+    "pillars": [
+      {
+        "num": "01 / Community",
+        "title": "Community Management",
+        "tagline": "construire l'engagement, jour après jour",
+        "dark": false,
+        "items": [
+          "Stratégie de contenu & ligne éditoriale",
+          "Animation, modération & relation communauté",
+          "Calendrier éditorial & production",
+          "Croissance organique & campagnes",
+          "Gestion de crise & e-réputation",
+          "Partenariats créateurs & influence"
+        ]
+      },
+      {
+        "num": "02 / Project",
+        "title": "Project Management",
+        "tagline": "du cadrage à la livraison, sans dérive",
+        "dark": true,
+        "items": [
+          "Cadrage, planning & jalons",
+          "Coordination d'équipes & prestataires",
+          "Suivi budget & ressources",
+          "Gestion des risques & arbitrages",
+          "Reporting clair pour les décideurs",
+          "Livraison dans les délais"
+        ]
+      }
+    ]
+  },
+  "projects": {
+    "title": "Mes réalisations professionnelles",
+    "subtitle": "Les entreprises, marques et projets que j’ai accompagnés en community & project management.",
+    "items": [
+      {
+        "slug": "payapp",
+        "company": "PayApp",
+        "detailDescription": "Stratégie social media, calendrier éditorial et animation de la communauté autour du lancement, du teasing à l'acquisition.",
+        "videos": [],
+        "kind": "Lancement · Fintech",
+        "title": "Campagne de lancement d'une app de paiement",
+        "description": "Stratégie social media, calendrier éditorial et animation de la communauté autour du lancement, du teasing à l'acquisition.",
+        "statValue": "+34K",
+        "statLabel": "abonnés en 4 mois",
+        "image": "assets/projects/project-01-splash.svg",
+        "gallery": [
+          "assets/projects/project-01-g1.svg",
+          "assets/projects/project-01-g3.svg"
+        ]
+      },
+      {
+        "slug": "crealab",
+        "company": "CreaLab Studio",
+        "detailDescription": "Ligne éditoriale, formats récurrents et programme de créateurs pour fédérer une audience locale et la garder active.",
+        "videos": [],
+        "kind": "Communauté · Lifestyle",
+        "title": "Animation d'une communauté créative",
+        "description": "Ligne éditoriale, formats récurrents et programme de créateurs pour fédérer une audience locale et la garder active.",
+        "statValue": "×3",
+        "statLabel": "taux d'engagement",
+        "image": "assets/projects/project-02-splash.svg",
+        "gallery": [
+          "assets/projects/project-02-g1.svg",
+          "assets/projects/project-02-g2.svg",
+          "assets/projects/project-02-g3.svg"
+        ]
+      },
+      {
+        "slug": "eventbridge",
+        "company": "EventBridge",
+        "detailDescription": "Pilotage du planning, des prestataires et du budget pour livrer une campagne 360° dans les délais et sans dépassement.",
+        "videos": [],
+        "kind": "Projet · Événementiel",
+        "title": "Coordination d'une campagne multi-équipes",
+        "description": "Pilotage du planning, des prestataires et du budget pour livrer une campagne 360° dans les délais et sans dépassement.",
+        "statValue": "12",
+        "statLabel": "livrables · 0 retard",
+        "image": "assets/projects/project-03-splash.svg",
+        "gallery": [
+          "assets/projects/project-03-g1.svg",
+          "assets/projects/project-03-g2.svg",
+          "assets/projects/project-03-g3.svg"
+        ]
+      }
+    ]
+  },
+  "impact": {
+    "title": "Des chiffres, pas des promesses.",
+    "stats": [
+      {
+        "count": 250,
+        "suffix": "K+",
+        "label": "vues organiques générées"
+      },
+      {
+        "count": 40,
+        "suffix": "+",
+        "label": "projets & campagnes livrés"
+      },
+      {
+        "count": 12,
+        "suffix": "",
+        "label": "communautés animées"
+      },
+      {
+        "count": 6,
+        "suffix": " ans",
+        "label": "au service des marques"
+      }
+    ]
+  },
+  "method": {
+    "title": "Comment je travaille, en quatre temps.",
+    "subtitle": "Un fil clair, du premier brief jusqu'à l'itération.",
+    "steps": [
+      {
+        "num": "01 · Écoute",
+        "title": "Cadrage",
+        "text": "Comprendre la marque, ses objectifs et sa communauté avant tout le reste."
+      },
+      {
+        "num": "02 · Plan",
+        "title": "Stratégie",
+        "text": "Ligne éditoriale, planning et indicateurs définis ensemble, noir sur blanc."
+      },
+      {
+        "num": "03 · Action",
+        "title": "Création & animation",
+        "text": "Production, publication et conversation, au rythme de la communauté."
+      },
+      {
+        "num": "04 · Mesure",
+        "title": "Itération",
+        "text": "Lecture des données, reporting clair, ajustements pour faire mieux."
+      }
+    ]
+  },
+  "testimonial": {
+    "quote": "Kalebie a donné une voix à notre marque et de la rigueur à nos projets.",
+    "author": "Marie N.",
+    "role": "Directrice marketing · Startup fintech, Douala"
+  },
+  "contact": {
+    "title": "Construisons votre",
+    "highlight": "communauté",
+    "lede": "Un projet, une campagne ou une communauté à faire grandir ? Parlons-en."
+  },
+  "social": [
+    {
+      "id": "linkedin",
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/kalebianouefrank"
+    },
+    {
+      "id": "instagram",
+      "label": "Instagram",
+      "url": "https://www.instagram.com/kalebianouefrank"
+    },
+    {
+      "id": "tiktok",
+      "label": "TikTok",
+      "url": "https://www.tiktok.com/@kalebianouefrank"
+    },
+    {
+      "id": "twitter",
+      "label": "X / Twitter",
+      "url": "https://x.com/kalebianouefrank"
+    }
+  ],
+  "partners": {
+    "title": "Ils m’ont fait confiance",
+    "subtitle": "Entreprises, marques et partenaires avec lesquels j’ai collaboré.",
+    "items": [
+      {
+        "name": "PayApp",
+        "logo": "assets/projects/project-01-g1.svg",
+        "url": ""
+      },
+      {
+        "name": "CreaLab Studio",
+        "logo": "assets/projects/project-02-g1.svg",
+        "url": ""
+      },
+      {
+        "name": "EventBridge",
+        "logo": "assets/projects/project-03-g1.svg",
+        "url": ""
+      }
+    ]
+  }
+}
