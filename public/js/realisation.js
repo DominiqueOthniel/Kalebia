@@ -17,12 +17,17 @@
   }
 
   function loadData() {
-    return fetch('/api/site?_=' + Date.now())
-      .then(function(r){ if (!r.ok) throw new Error('fetch failed'); return r.json(); })
-      .catch(function(){
-        if (window.SITE_DATA) return window.SITE_DATA;
-        throw new Error('Données indisponibles');
-      });
+    var urls = ['/api/site', '/data/site.json', 'data/site.json'];
+    function tryFetch(i) {
+      if (i >= urls.length) {
+        if (window.SITE_DATA) return Promise.resolve(window.SITE_DATA);
+        return Promise.reject(new Error('Données indisponibles'));
+      }
+      return fetch(urls[i] + '?_=' + Date.now())
+        .then(function(r){ if (!r.ok) throw new Error('fetch failed'); return r.json(); })
+        .catch(function(){ return tryFetch(i + 1); });
+    }
+    return tryFetch(0);
   }
 
   function renderMissing() {
@@ -34,13 +39,14 @@
 
   function renderProject(project, data) {
     var name = ((data.profile?.firstName || '') + ' ' + (data.profile?.lastName || '')).trim();
-    var title = project.company || project.title;
-    document.title = title + ' · ' + (name || 'Kalebia Nyoue Franck');
+    var pageTitle = (project.title || project.company || 'Réalisation') + ' · ' + (name || 'Kalebia Nyoue Franck');
+    document.title = pageTitle;
 
     document.getElementById('detail-head').innerHTML =
       '<span class="eyebrow">' + esc(project.kind || 'Réalisation') + '</span>' +
-      '<h1>' + esc(title) + '</h1>' +
-      '<p class="lede">' + esc(project.title || '') + '</p>';
+      (project.company ? '<p class="detail-company">' + esc(project.company) + '</p>' : '') +
+      '<h1>' + esc(project.title || project.company) + '</h1>' +
+      (project.description ? '<p class="lede">' + esc(project.description) + '</p>' : '');
 
     document.getElementById('detail-copy').innerHTML =
       '<h2>Contexte & collaboration</h2>' +
@@ -55,7 +61,7 @@
     (project.gallery || []).forEach(function(path){ images.push(path); });
     document.getElementById('detail-gallery').innerHTML = images.length
       ? images.map(function(path){
-        return '<figure><img src="' + esc(assetUrl(path)) + '" alt="Image du projet ' + esc(title) + '" loading="lazy"></figure>';
+        return '<figure><img src="' + esc(assetUrl(path)) + '" alt="Image du projet ' + esc(project.title || project.company) + '" loading="lazy"></figure>';
       }).join('')
       : '<p class="empty-state">Aucune image ajoutée pour le moment.</p>';
 

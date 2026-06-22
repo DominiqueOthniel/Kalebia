@@ -103,6 +103,7 @@
     var thesis = document.querySelector('[data-scramble]');
     if (thesis && data.hero) thesis.setAttribute('data-scramble', data.hero.thesis || '');
 
+    setText('hero-headline', data.hero && data.hero.headline);
     setText('hero-lede', data.hero && data.hero.lede);
 
     var portrait = document.getElementById('portrait-img');
@@ -112,7 +113,10 @@
     }
 
     var caption = document.getElementById('portrait-caption');
-    if (caption) caption.innerHTML = '<b>' + esc(name) + '</b>' + esc(profile.location || '');
+    if (caption) {
+      caption.innerHTML = '<b>' + esc(name) + '</b>' +
+        (profile.location ? '<span class="ph-loc">' + esc(profile.location) + '</span>' : '');
+    }
 
     if (data.dashboard) {
       var comm = document.getElementById('metric-community');
@@ -167,8 +171,12 @@
       }).join('');
     }
 
+    setText('travaux-eyebrow', 'Réalisations');
     setText('travaux-title', data.projects && data.projects.title);
     setText('travaux-subtitle', data.projects && data.projects.subtitle);
+
+    var travauxNav = document.querySelector('.nav-links a[href="#travaux"]');
+    if (travauxNav) travauxNav.textContent = 'Réalisations';
 
     var workList = document.getElementById('work-list');
     if (workList && data.projects && data.projects.items) {
@@ -198,8 +206,9 @@
           '<div class="case-body">' +
           '<div class="cidx" aria-hidden="true">' + idx + '</div>' +
           '<div class="case-copy">' +
-          '<div class="ckind">' + esc(p.company || p.kind) + '</div>' +
-          '<h3>' + esc(p.company || p.title) + '</h3>' +
+          '<div class="ckind">' + esc(p.kind || 'Réalisation') + '</div>' +
+          (p.company ? '<p class="case-company">' + esc(p.company) + '</p>' : '') +
+          '<h3>' + esc(p.title) + '</h3>' +
           '<p>' + esc(p.description) + '</p></div>' +
           '<div class="cstat"><div class="cn">' + esc(p.statValue) + '</div>' +
           '<div class="cl">' + esc(p.statLabel) + '</div></div>' +

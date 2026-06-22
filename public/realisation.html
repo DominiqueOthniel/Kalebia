@@ -16,12 +16,15 @@
 
 <nav aria-label="Navigation principale">
   <div class="wrap nav-inner">
-    <a href="/" class="brand"><span class="dot" aria-hidden="true"></span><span>Kalebia&nbsp;Nyoue&nbsp;Franck</span></a>
-    <div class="nav-links open-static">
-      <a href="/#travaux">Toutes les réalisations</a>
+    <a href="/" class="brand"><span class="dot" aria-hidden="true"></span><span class="brand-text">Kalebia&nbsp;Nyoue&nbsp;Franck</span></a>
+    <div class="nav-links" id="navlinks">
+      <a href="/#travaux">Réalisations</a>
       <a href="/#confiance">Partenaires</a>
       <a href="/#contact" class="nav-cta">Me contacter</a>
     </div>
+    <button class="burger" id="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navlinks">
+      <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+    </button>
   </div>
 </nav>
 
@@ -70,5 +73,6 @@
 
 <script src="/js/site-data.js"></script>
 <script src="/js/realisation.js"></script>
+<script src="/js/nav-mobile.js"></script>
 </body>
 </html>
