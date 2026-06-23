@@ -60,9 +60,10 @@
       if (parent.dataset.staggerBound) return;
       parent.dataset.staggerBound = '1';
       var kids = parent.children;
+      var delay = parent.closest('.pillar') || parent.closest('.about-block') ? 250 : 70;
       for (var i = 0; i < kids.length; i++) {
         kids[i].setAttribute('data-reveal', '');
-        kids[i].style.transitionDelay = (i * 70) + 'ms';
+        kids[i].style.transitionDelay = (i * delay) + 'ms';
         if (!kids[i].dataset.observed) {
           kids[i].dataset.observed = '1';
           io.observe(kids[i]);
@@ -150,7 +151,7 @@
       img.dataset.errorBound = '1';
       img.addEventListener('error', function(){
         img.classList.add('is-broken');
-        var wrap = img.closest('.case-splash-wrap');
+        var wrap = img.closest('.phone-mock') || img.closest('.case-splash-wrap');
         if (wrap) wrap.classList.add('has-broken-image');
       });
     });
@@ -185,11 +186,111 @@
     sections.forEach(function(item){ observer.observe(item.section); });
   }
 
+  function initThemeToggle(){
+    var btn = document.getElementById('themeToggle');
+    if (!btn) return;
+    var saved = localStorage.getItem('knf_theme');
+    if (saved === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+    btn.addEventListener('click', function(){
+      var dark = document.documentElement.getAttribute('data-theme') === 'dark';
+      if (dark) {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('knf_theme', 'light');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('knf_theme', 'dark');
+      }
+    });
+  }
+
+  function initBlogRead(){
+    document.querySelectorAll('.blog-read:not([data-blog-bound])').forEach(function(btn){
+      btn.dataset.blogBound = '1';
+      btn.addEventListener('click', function(){
+        var slug = btn.dataset.blogSlug;
+        var body = document.getElementById('blog-' + slug);
+        if (!body) return;
+        var open = !body.classList.contains('hidden');
+        document.querySelectorAll('.blog-body').forEach(function(b){ b.classList.add('hidden'); });
+        document.querySelectorAll('.blog-read').forEach(function(b){ b.textContent = 'Lire l\'article →'; });
+        if (!open) {
+          body.classList.remove('hidden');
+          btn.textContent = 'Fermer ↑';
+        }
+      });
+    });
+  }
+
+  function initTestimonialForm(){
+    var form = document.getElementById('testimonialForm');
+    var starInput = document.getElementById('starInput');
+    var ratingField = document.getElementById('t-rating');
+    var note = document.getElementById('testimonialFormNote');
+    if (!form || !starInput) return;
+
+    function setStars(n){
+      if (ratingField) ratingField.value = n;
+      starInput.querySelectorAll('button').forEach(function(b){
+        b.classList.toggle('on', Number(b.dataset.star) <= n);
+      });
+    }
+    setStars(5);
+    starInput.querySelectorAll('button').forEach(function(b){
+      b.addEventListener('click', function(){ setStars(Number(b.dataset.star)); });
+    });
+
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      if (!note) return;
+      var payload = {
+        author: form.author.value.trim(),
+        role: form.role.value.trim(),
+        company: form.company.value.trim(),
+        quote: form.quote.value.trim(),
+        rating: Number(ratingField ? ratingField.value : 5)
+      };
+      if (!payload.author || !payload.quote) {
+        note.textContent = 'Merci de remplir tous les champs obligatoires.';
+        note.className = 'form-note err';
+        return;
+      }
+      note.textContent = 'Envoi en cours…';
+      note.className = 'form-note';
+      fetch('/api/testimonials', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).then(function(r){ return r.json().then(function(d){ if (!r.ok) throw new Error(d.error || 'Erreur'); return d; }); })
+        .then(function(){
+          form.reset();
+          setStars(5);
+          note.textContent = 'Merci ! Votre avis sera publié après modération.';
+          note.className = 'form-note ok';
+        })
+        .catch(function(err){
+          var wa = document.getElementById('contact-whatsapp');
+          if (wa && wa.href && wa.href.indexOf('wa.me') > -1) {
+            var txt = 'Bonjour Kalebia, je souhaite déposer un témoignage.\n\nNom : ' + payload.author +
+              '\nPoste : ' + payload.role + '\nEntreprise : ' + payload.company +
+              '\nNote : ' + payload.rating + '/5\n\n"' + payload.quote + '"';
+            note.innerHTML = 'Envoi serveur indisponible. <a href="' + wa.href.split('?')[0] + '?text=' + encodeURIComponent(txt) + '" target="_blank" rel="noopener">Envoyer via WhatsApp</a>.';
+            note.className = 'form-note';
+          } else {
+            note.textContent = err.message || 'Impossible d\'envoyer pour le moment.';
+            note.className = 'form-note err';
+          }
+        });
+    });
+  }
+
   function initApp(){
     bindInteractions();
     bindGallery();
     bindImageFallbacks();
     initActiveNav();
+    initThemeToggle();
+    initBlogRead();
+    initTestimonialForm();
     observeReveals();
     observeCounters();
   }
@@ -443,7 +544,9 @@
       chip.addEventListener('click', function(){ burst(chip); });
       chip.addEventListener('animationend', function(ev){ if (ev.animationName === 'opop') chip.classList.remove('pop'); });
     });
-    if (meter) meter.addEventListener('animationend', function(){ meter.classList.remove('bump'); });
+    if (meter) meter.addEventListener('transitionend', function(ev){
+      if (ev.propertyName === 'transform') meter.classList.remove('bump');
+    });
   }
 
   var skipBtn = document.getElementById('skip');

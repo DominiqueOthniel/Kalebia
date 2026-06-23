@@ -39,7 +39,7 @@
 
   function renderProject(project, data) {
     var name = ((data.profile?.firstName || '') + ' ' + (data.profile?.lastName || '')).trim();
-    var pageTitle = (project.title || project.company || 'Réalisation') + ' · ' + (name || 'Kalebia Nyoue Franck');
+    var pageTitle = (project.title || project.company || 'Réalisation') + ', ' + (name || 'Kalebia Nyoue Franck');
     document.title = pageTitle;
 
     document.getElementById('detail-head').innerHTML =

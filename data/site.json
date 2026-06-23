@@ -1,21 +1,22 @@
 {
   "meta": {
-    "siteUrl": "https://kalebia.dev",
-    "title": "Kalebia Nyoue Franck · Project & Community Manager",
-    "description": "Kalebia Nyoue Franck, Project Manager & Community Manager à Douala. Des communautés qui vibrent, des projets qui aboutissent.",
-    "jobTitle": "Project & Community Manager"
+    "siteUrl": "https://nkprod.netlify.app",
+    "title": "Kalebia Nyoue Franck, Community Manager & Project Manager",
+    "description": "Kalebia Nyoue Franck, Community Manager & Project Manager à Douala. Stratégie digitale, création de contenu et pilotage de projets.",
+    "jobTitle": "Community Manager & Project Manager"
   },
   "profile": {
     "firstName": "Kalebia Nyoue",
     "lastName": "Franck",
-    "location": "Douala · Cameroun · FR / EN",
+    "location": "Douala, Cameroun (FR / EN)",
     "email": "bonjour@kalebia.dev",
-    "eyebrow": "Project Manager · Community Manager · Douala"
+    "whatsapp": "237600000000",
+    "eyebrow": "Community Manager, créateur de contenu, stratège digital"
   },
   "hero": {
     "thesis": "Des communautés qui vibrent. Des projets qui aboutissent.",
     "lede": "J'accompagne les marques à transformer une audience en communauté engagée, et une idée en projet livré, du cadrage à la mesure.",
-    "headline": "Je transforme les communautés en leviers de croissance."
+    "headline": "Community Manager & stratège digital. Je fais grandir vos communautés et vos projets."
   },
   "portrait": "assets/portrait.png",
   "cv": {
@@ -45,10 +46,33 @@
   ],
   "about": {
     "title": "Je fais le lien entre les gens, les marques et les délais.",
+    "synergy": "Une double casquette, une seule logique : faire avancer les projets et les communautés.",
     "paragraphs": [
       "À la croisée du <strong>contenu</strong>, de la <strong>stratégie</strong> et de la <strong>coordination</strong>, j'aide les équipes à construire des communautés vivantes et à mener leurs projets jusqu'au lancement.",
       "Mon terrain de jeu : les réseaux sociaux, les calendriers éditoriaux, les campagnes, et tout ce qui transforme une bonne idée en résultat mesurable. Bilingue français / anglais, basé à Douala."
     ],
+    "cmBlock": {
+      "title": "Community Manager",
+      "items": [
+        "Ligne éditoriale & stratégie de contenu",
+        "Animation, modération & relation communauté",
+        "Calendrier éditorial & production créative",
+        "Croissance organique & campagnes social media",
+        "Gestion de crise & e-réputation",
+        "Partenariats créateurs & influence"
+      ]
+    },
+    "pmBlock": {
+      "title": "Project Manager",
+      "items": [
+        "Cadrage, planning & jalons",
+        "Coordination d'équipes & prestataires",
+        "Suivi budget & ressources",
+        "Gestion des risques & arbitrages",
+        "Reporting clair pour les décideurs",
+        "Livraison dans les délais"
+      ]
+    },
     "tags": [
       "Community management",
       "Gestion de projet",
@@ -56,6 +80,21 @@
       "Création de contenu",
       "Reporting & analytics",
       "Partenariats créateurs"
+    ],
+    "gallery": []
+  },
+  "platforms": {
+    "title": "Plateformes gérées",
+    "subtitle": "Une couverture multi-réseaux pour toucher votre audience là où elle est.",
+    "items": [
+      { "id": "instagram", "name": "Instagram", "level": "Expert" },
+      { "id": "facebook", "name": "Facebook", "level": "Expert" },
+      { "id": "tiktok", "name": "TikTok", "level": "Expert" },
+      { "id": "snapchat", "name": "Snapchat", "level": "Avancé" },
+      { "id": "linkedin", "name": "LinkedIn", "level": "Avancé" },
+      { "id": "x", "name": "X", "level": "Avancé" },
+      { "id": "youtube", "name": "YouTube", "level": "Intermédiaire" },
+      { "id": "whatsapp", "name": "WhatsApp", "level": "Expert" }
     ]
   },
   "expertise": {
@@ -94,14 +133,17 @@
   },
   "projects": {
     "title": "Mes réalisations professionnelles",
-    "subtitle": "Les entreprises, marques et projets que j’ai accompagnés en community & project management.",
+    "subtitle": "Les entreprises, marques et projets que j'ai accompagnés en community & project management.",
     "items": [
       {
         "slug": "payapp",
         "company": "PayApp",
+        "platform": "Instagram, TikTok",
+        "objective": "Lancer l'app et acquérir les premiers utilisateurs via le social.",
+        "results": "+34K abonnés, taux d'engagement ×2,4 en 4 mois.",
         "detailDescription": "Stratégie social media, calendrier éditorial et animation de la communauté autour du lancement, du teasing à l'acquisition.",
         "videos": [],
-        "kind": "Lancement · Fintech",
+        "kind": "Lancement, Fintech",
         "title": "Campagne de lancement d'une app de paiement",
         "description": "Stratégie social media, calendrier éditorial et animation de la communauté autour du lancement, du teasing à l'acquisition.",
         "statValue": "+34K",
@@ -115,9 +157,12 @@
       {
         "slug": "crealab",
         "company": "CreaLab Studio",
+        "platform": "Instagram, Facebook",
+        "objective": "Fédérer une communauté créative locale et la garder active.",
+        "results": "Taux d'engagement multiplié par 3, formats récurrents adoptés.",
         "detailDescription": "Ligne éditoriale, formats récurrents et programme de créateurs pour fédérer une audience locale et la garder active.",
         "videos": [],
-        "kind": "Communauté · Lifestyle",
+        "kind": "Communauté, Lifestyle",
         "title": "Animation d'une communauté créative",
         "description": "Ligne éditoriale, formats récurrents et programme de créateurs pour fédérer une audience locale et la garder active.",
         "statValue": "×3",
@@ -132,19 +177,84 @@
       {
         "slug": "eventbridge",
         "company": "EventBridge",
+        "platform": "Multi-plateformes",
+        "objective": "Coordonner une campagne 360° multi-équipes dans les délais.",
+        "results": "12 livrables, 0 retard, budget respecté.",
         "detailDescription": "Pilotage du planning, des prestataires et du budget pour livrer une campagne 360° dans les délais et sans dépassement.",
         "videos": [],
-        "kind": "Projet · Événementiel",
+        "kind": "Projet, Événementiel",
         "title": "Coordination d'une campagne multi-équipes",
         "description": "Pilotage du planning, des prestataires et du budget pour livrer une campagne 360° dans les délais et sans dépassement.",
         "statValue": "12",
-        "statLabel": "livrables · 0 retard",
+        "statLabel": "livrables, 0 retard",
         "image": "assets/projects/project-03-splash.svg",
         "gallery": [
           "assets/projects/project-03-g1.svg",
           "assets/projects/project-03-g2.svg",
           "assets/projects/project-03-g3.svg"
         ]
+      }
+    ]
+  },
+  "formations": {
+    "title": "Mes Formations",
+    "subtitle": "Des parcours concrets pour maîtriser le community management et les réseaux sociaux.",
+    "items": [
+      {
+        "slug": "maitriser-reseaux-sociaux",
+        "title": "Comment maîtriser les réseaux sociaux",
+        "description": "Apprenez à structurer votre présence, créer du contenu engageant et analyser vos performances sur les principales plateformes.",
+        "audience": "Entrepreneurs, créateurs, débutants en social media",
+        "duration": "4 semaines",
+        "modality": "En ligne, sessions live",
+        "benefits": [
+          "Maîtriser Instagram, Facebook, TikTok et Snapchat",
+          "Construire un calendrier éditorial efficace",
+          "Lire et interpréter vos statistiques"
+        ]
+      },
+      {
+        "slug": "reussir-community-management",
+        "title": "Réussir en Community Management",
+        "description": "De la stratégie à l'animation quotidienne : tout ce qu'il faut pour devenir un community manager opérationnel et crédible.",
+        "audience": "Futurs CM, freelances, responsables communication",
+        "duration": "6 semaines",
+        "modality": "En ligne, ateliers pratiques",
+        "benefits": [
+          "Définir une ligne éditoriale percutante",
+          "Animer et modérer une communauté",
+          "Gérer une crise et protéger l'e-réputation"
+        ]
+      }
+    ]
+  },
+  "blog": {
+    "title": "Blog / Insights",
+    "subtitle": "Réflexions, méthodes et conseils sur le community management et la gestion de projet.",
+    "items": [
+      {
+        "slug": "strategie-editoriale",
+        "title": "Comment construire une stratégie éditoriale qui engage",
+        "excerpt": "Une ligne éditoriale claire est le socle de toute communauté qui dure. Voici ma méthode en 5 étapes.",
+        "date": "2026-03-15",
+        "readTime": "6 min",
+        "body": "Une stratégie éditoriale solide commence par une compréhension fine de votre audience. Qui sont-ils ? Quels contenus consomment-ils ? À quels moments sont-ils actifs ?\n\nEnsuite, définissez votre territoire de marque : les sujets que vous maîtrisez, le ton qui vous ressemble, les formats qui performent sur vos plateformes.\n\nEnfin, structurez un calendrier éditorial réaliste. Mieux vaut publier moins mais régulièrement que de disparaître après deux semaines d'enthousiasme."
+      },
+      {
+        "slug": "gestion-crise-reseaux",
+        "title": "Gestion de crise sur les réseaux : les réflexes qui sauvent",
+        "excerpt": "Quand la tempête arrive, chaque minute compte. Voici comment réagir sans aggraver la situation.",
+        "date": "2026-02-28",
+        "readTime": "5 min",
+        "body": "La première règle : ne pas réagir à chaud. Prenez le temps d'évaluer l'ampleur, d'identifier la source et de préparer une réponse alignée avec vos valeurs de marque.\n\nCommuniquez en interne avant d'aller en externe. Toute l'équipe doit être sur la même longueur d'onde.\n\nDocumentez chaque étape : captures d'écran, horodatage, actions prises. Cela vous protège et vous permet d'apprendre pour la prochaine fois."
+      },
+      {
+        "slug": "kpis-community-manager",
+        "title": "Les KPIs qu'un Community Manager doit vraiment suivre",
+        "excerpt": "Au-delà des likes : les indicateurs qui prouvent votre impact auprès des décideurs.",
+        "date": "2026-01-20",
+        "readTime": "7 min",
+        "body": "Le taux d'engagement reste un classique, mais il ne suffit pas. Ajoutez la portée organique, le taux de croissance de la communauté, le sentiment global des commentaires et le taux de clic vers vos objectifs business.\n\nComparez toujours sur des périodes identiques et contextualisez : une baisse en août n'est pas forcément un échec.\n\nPrésentez vos chiffres avec une narration : où vous étiez, ce que vous avez fait, où vous en êtes."
       }
     ]
   },
@@ -178,36 +288,60 @@
     "subtitle": "Un fil clair, du premier brief jusqu'à l'itération.",
     "steps": [
       {
-        "num": "01 · Écoute",
+        "num": "01. Écoute",
         "title": "Cadrage",
         "text": "Comprendre la marque, ses objectifs et sa communauté avant tout le reste."
       },
       {
-        "num": "02 · Plan",
+        "num": "02. Plan",
         "title": "Stratégie",
         "text": "Ligne éditoriale, planning et indicateurs définis ensemble, noir sur blanc."
       },
       {
-        "num": "03 · Action",
+        "num": "03. Action",
         "title": "Création & animation",
         "text": "Production, publication et conversation, au rythme de la communauté."
       },
       {
-        "num": "04 · Mesure",
+        "num": "04. Mesure",
         "title": "Itération",
         "text": "Lecture des données, reporting clair, ajustements pour faire mieux."
       }
     ]
   },
+  "testimonials": {
+    "items": [
+      {
+        "id": "t1",
+        "quote": "Kalebia a donné une voix à notre marque et de la rigueur à nos projets.",
+        "author": "Marie N.",
+        "role": "Directrice marketing",
+        "company": "Startup fintech, Douala",
+        "rating": 5,
+        "published": true
+      },
+      {
+        "id": "t2",
+        "quote": "Une vraie professionnelle : réactive, créative et toujours orientée résultats.",
+        "author": "Jean-Paul M.",
+        "role": "Fondateur",
+        "company": "CreaLab Studio",
+        "rating": 5,
+        "published": true
+      }
+    ],
+    "pending": []
+  },
   "testimonial": {
     "quote": "Kalebia a donné une voix à notre marque et de la rigueur à nos projets.",
     "author": "Marie N.",
-    "role": "Directrice marketing · Startup fintech, Douala"
+    "role": "Directrice marketing, Startup fintech, Douala"
   },
   "contact": {
     "title": "Construisons votre",
     "highlight": "communauté",
-    "lede": "Un projet, une campagne ou une communauté à faire grandir ? Parlons-en."
+    "lede": "Un projet, une campagne ou une communauté à faire grandir ? Parlons-en.",
+    "whatsappMessage": "Bonjour Kalebia, je souhaite discuter d'une collaboration."
   },
   "social": [
     {
@@ -221,9 +355,19 @@
       "url": "https://www.instagram.com/kalebianouefrank"
     },
     {
+      "id": "facebook",
+      "label": "Facebook",
+      "url": "https://www.facebook.com/kalebianouefrank"
+    },
+    {
       "id": "tiktok",
       "label": "TikTok",
       "url": "https://www.tiktok.com/@kalebianouefrank"
+    },
+    {
+      "id": "snapchat",
+      "label": "Snapchat",
+      "url": "https://www.snapchat.com/add/kalebianouefrank"
     },
     {
       "id": "twitter",
@@ -232,8 +376,8 @@
     }
   ],
   "partners": {
-    "title": "Ils m’ont fait confiance",
-    "subtitle": "Entreprises, marques et partenaires avec lesquels j’ai collaboré.",
+    "title": "Ils m'ont fait confiance",
+    "subtitle": "Entreprises, marques et partenaires avec lesquels j'ai collaboré.",
     "items": [
       {
         "name": "PayApp",

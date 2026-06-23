@@ -44,6 +44,33 @@ router.put('/admin/site', requireAuth, async (req, res) => {
   }
 });
 
+router.post('/testimonials', async (req, res) => {
+  try {
+    const { author, role, company, quote, rating } = req.body || {};
+    if (!author || !quote) {
+      res.status(400).json({ error: 'Nom et commentaire requis.' });
+      return;
+    }
+    const site = await readSite();
+    if (!site.testimonials) site.testimonials = { items: [], pending: [] };
+    if (!site.testimonials.pending) site.testimonials.pending = [];
+    site.testimonials.pending.push({
+      id: 'p' + Date.now(),
+      author: String(author).trim(),
+      role: String(role || '').trim(),
+      company: String(company || '').trim(),
+      quote: String(quote).trim(),
+      rating: Math.min(5, Math.max(1, Number(rating) || 5)),
+      published: false,
+      submittedAt: new Date().toISOString()
+    });
+    await writeSite(site);
+    res.json({ ok: true });
+  } catch {
+    res.status(500).json({ error: 'Impossible d\'enregistrer le témoignage.' });
+  }
+});
+
 router.post('/admin/upload', requireAuth, upload.single('file'), async (req, res) => {
   if (process.env.AWS_LAMBDA_FUNCTION_NAME || process.env.NETLIFY) {
     res.status(501).json({ error: 'Les uploads ne sont pas disponibles sur Netlify. Utilisez le serveur local (npm start).' });
@@ -92,6 +119,13 @@ router.post('/admin/upload', requireAuth, upload.single('file'), async (req, res
         return;
       }
       site.partners.items[i].logo = relativePath;
+    } else if (type === 'gallery-photo') {
+      if (!site.about) site.about = {};
+      if (!site.about.gallery) site.about.gallery = [];
+      site.about.gallery.push({
+        src: relativePath,
+        caption: req.body.caption || ''
+      });
     } else {
       site.portrait = relativePath;
     }

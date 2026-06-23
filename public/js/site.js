@@ -36,15 +36,80 @@
     }
   }
 
+  function platformBrand(id) {
+    var map = {
+      instagram: { bg: 'linear-gradient(140deg,#feda75,#fa7e1e 32%,#d62976 64%,#962fbf)', fg: '#fff' },
+      facebook: { bg: 'linear-gradient(140deg,#4f7fe0,#1877f2)', fg: '#fff' },
+      tiktok: { bg: 'linear-gradient(140deg,#69c9d0,#111 52%,#ee1d52)', fg: '#fff' },
+      snapchat: { bg: 'linear-gradient(140deg,#fffc54,#f4d000)', fg: '#1a1a1a' },
+      linkedin: { bg: 'linear-gradient(140deg,#2f86d4,#004182)', fg: '#fff' },
+      x: { bg: 'linear-gradient(140deg,#3a3a3a,#050505)', fg: '#fff' },
+      twitter: { bg: 'linear-gradient(140deg,#3a3a3a,#050505)', fg: '#fff' },
+      youtube: { bg: 'linear-gradient(140deg,#ff5b5b,#ff0000)', fg: '#fff' },
+      whatsapp: { bg: 'linear-gradient(140deg,#41d973,#128c7e)', fg: '#fff' },
+      telegram: { bg: 'linear-gradient(140deg,#37bbfe,#007dbb)', fg: '#fff' },
+      messenger: { bg: 'linear-gradient(140deg,#00b2ff,#a033ff 48%,#ff5280 80%,#ff7061)', fg: '#fff' },
+      threads: { bg: 'linear-gradient(140deg,#3a3a3a,#000)', fg: '#fff' }
+    };
+    return map[id] || { bg: 'linear-gradient(140deg,var(--sky-deep),var(--night-mid))', fg: '#fff' };
+  }
+
   function socialIconPath(id) {
     var map = {
       linkedin: 'assets/social/linkedin.svg',
       instagram: 'assets/social/instagram.svg',
       tiktok: 'assets/social/tiktok.svg',
       twitter: 'assets/social/x.svg',
-      x: 'assets/social/x.svg'
+      x: 'assets/social/x.svg',
+      facebook: 'assets/social/facebook.svg',
+      snapchat: 'assets/social/snapchat.svg',
+      whatsapp: 'assets/social/whatsapp.svg',
+      youtube: 'assets/social/youtube.svg',
+      telegram: 'assets/social/telegram.svg',
+      messenger: 'assets/social/messenger.svg',
+      threads: 'assets/social/threads.svg'
     };
     return map[id] || null;
+  }
+
+  function starsHtml(n) {
+    var out = '';
+    for (var i = 1; i <= 5; i++) {
+      out += '<span class="star' + (i <= n ? ' on' : '') + '" aria-hidden="true">★</span>';
+    }
+    return out;
+  }
+
+  function whatsappUrl(number, message) {
+    if (!number) return '#';
+    var n = String(number).replace(/\D/g, '');
+    var q = message ? '?text=' + encodeURIComponent(message) : '';
+    return 'https://wa.me/' + n + q;
+  }
+
+  function renderSocialLinks(container, items) {
+    if (!container || !items) return;
+    container.innerHTML = '';
+    items.forEach(function(item){
+      if (!item.url) return;
+      var label = item.label || item.id || 'Réseau social';
+      var a = document.createElement('a');
+      a.href = item.url;
+      a.className = container.id === 'foot-socials' ? 'foot-social-link' : 'social-link';
+      a.target = '_blank';
+      a.rel = 'noopener noreferrer';
+      a.setAttribute('aria-label', label);
+      a.title = label;
+      if (container.id !== 'foot-socials') a.setAttribute('data-cursor', '');
+      var icon = socialIconPath(item.id);
+      if (icon) {
+        a.innerHTML = '<img src="' + esc(assetUrl(icon)) + '" alt="" width="22" height="22" loading="lazy" decoding="async">' +
+          (container.id !== 'foot-socials' ? '<span class="social-label">' + esc(label) + '</span>' : '');
+      } else {
+        a.innerHTML = '<span class="social-label">' + esc(label) + '</span>';
+      }
+      container.appendChild(a);
+    });
   }
 
   window.renderSite = function(data) {
@@ -145,9 +210,35 @@
     }
 
     setText('apropos-title', data.about && data.about.title);
+    setText('about-synergy', data.about && data.about.synergy);
+
     var aboutParas = document.getElementById('about-paragraphs');
     if (aboutParas && data.about && data.about.paragraphs) {
       aboutParas.innerHTML = data.about.paragraphs.map(function(p){ return '<p>' + p + '</p>'; }).join('');
+    }
+
+    var aboutBlocks = document.getElementById('about-blocks');
+    if (aboutBlocks && data.about) {
+      var blocksHtml = '';
+      if (data.about.cmBlock) {
+        blocksHtml += '<div class="about-block" data-reveal><h3>' + esc(data.about.cmBlock.title) + '</h3><ul data-stagger>' +
+          (data.about.cmBlock.items || []).map(function(li){ return '<li>' + esc(li) + '</li>'; }).join('') + '</ul></div>';
+      }
+      if (data.about.pmBlock) {
+        blocksHtml += '<div class="about-block about-block--dark" data-reveal><h3>' + esc(data.about.pmBlock.title) + '</h3><ul data-stagger>' +
+          (data.about.pmBlock.items || []).map(function(li){ return '<li>' + esc(li) + '</li>'; }).join('') + '</ul></div>';
+      }
+      aboutBlocks.innerHTML = blocksHtml;
+    }
+
+    var aboutGallery = document.getElementById('about-gallery');
+    if (aboutGallery && data.about && data.about.gallery && data.about.gallery.length) {
+      aboutGallery.innerHTML = data.about.gallery.map(function(g){
+        return '<figure class="gallery-item" data-reveal><img src="' + esc(assetUrl(g.src || g)) + '" alt="' + esc(g.caption || '') + '" loading="lazy" width="160" height="160">' +
+          (g.caption ? '<figcaption>' + esc(g.caption) + '</figcaption>' : '') + '</figure>';
+      }).join('');
+    } else if (aboutGallery) {
+      aboutGallery.innerHTML = '';
     }
 
     var tags = document.getElementById('about-tags');
@@ -167,8 +258,25 @@
           '<span class="pnum">' + esc(p.num) + '</span>' +
           '<h3>' + esc(p.title) + '</h3>' +
           '<span class="ptag">' + esc(p.tagline) + '</span>' +
-          '<ul>' + items + '</ul></div>';
+          '<ul data-stagger>' + items + '</ul></div>';
       }).join('');
+    }
+
+    if (data.platforms) {
+      setText('platforms-title', data.platforms.title);
+      setText('platforms-subtitle', data.platforms.subtitle);
+      var platformsGrid = document.getElementById('platforms-grid');
+      if (platformsGrid && data.platforms.items) {
+        platformsGrid.innerHTML = data.platforms.items.map(function(pl){
+          var icon = socialIconPath(pl.id);
+          var brand = platformBrand(pl.id);
+          var iconPath = icon ? '/' + String(icon).replace(/^\/+/, '') : '';
+          return '<div class="platform-card" data-platform="' + esc(pl.id) + '">' +
+            (icon ? '<span class="platform-icon" style="--bg:' + brand.bg + ';--fg:' + brand.fg + ';--logo:url(' + iconPath + ')"></span>' : '') +
+            '<strong>' + esc(pl.name) + '</strong>' +
+            '<span class="platform-level">' + esc(pl.level || '') + '</span></div>';
+        }).join('');
+      }
     }
 
     setText('travaux-eyebrow', 'Réalisations');
@@ -193,9 +301,10 @@
           }).join('');
           var splashSrc = assetUrl(p.image);
           visual = '<figure class="case-visual">' +
-            '<div class="case-splash-wrap">' +
-            '<img class="case-splash" src="' + esc(splashSrc) + '" alt="Visuel · ' + esc(p.title) + '" loading="eager" decoding="async" width="640" height="360" data-case="' + i + '" data-src="' + esc(splashSrc) + '">' +
-            '</div>' +
+            '<div class="phone-mock">' +
+            '<div class="phone-frame">' +
+            '<img class="case-splash" src="' + esc(splashSrc) + '" alt="Visuel, ' + esc(p.title) + '" loading="eager" decoding="async" width="360" height="640" data-case="' + i + '" data-src="' + esc(splashSrc) + '">' +
+            '</div></div>' +
             (thumbs ? '<div class="case-gallery" role="group" aria-label="Visuels de campagne">' + thumbs + '</div>' : '') +
             '</figure>';
         }
@@ -208,13 +317,58 @@
           '<div class="case-copy">' +
           '<div class="ckind">' + esc(p.kind || 'Réalisation') + '</div>' +
           (p.company ? '<p class="case-company">' + esc(p.company) + '</p>' : '') +
+          (p.platform ? '<p class="case-platform">' + esc(p.platform) + '</p>' : '') +
           '<h3>' + esc(p.title) + '</h3>' +
-          '<p>' + esc(p.description) + '</p></div>' +
+          '<p>' + esc(p.description) + '</p>' +
+          (p.objective ? '<p class="case-meta"><strong>Objectif :</strong> ' + esc(p.objective) + '</p>' : '') +
+          (p.results ? '<p class="case-meta"><strong>Résultats :</strong> ' + esc(p.results) + '</p>' : '') +
+          '</div>' +
           '<div class="cstat"><div class="cn">' + esc(p.statValue) + '</div>' +
           '<div class="cl">' + esc(p.statLabel) + '</div></div>' +
-          '<a class="case-link" href="' + esc(detailUrl) + '">Voir la collaboration →</a>' +
+          '<a class="case-link" href="' + esc(detailUrl) + '">Voir la collaboration complète →</a>' +
           '</div></article>';
       }).join('');
+    }
+
+    if (data.formations) {
+      setText('formations-title', data.formations.title);
+      setText('formations-subtitle', data.formations.subtitle);
+      var formGrid = document.getElementById('formations-grid');
+      if (formGrid && data.formations.items) {
+        var waMsg = (data.contact && data.contact.whatsappMessage) || 'Bonjour Kalebia, je souhaite m\'inscrire à votre formation sur ';
+        formGrid.innerHTML = data.formations.items.map(function(f){
+          var wa = whatsappUrl(data.profile && data.profile.whatsapp, waMsg + (f.title || ''));
+          var benefits = (f.benefits || []).map(function(b){ return '<li>' + esc(b) + '</li>'; }).join('');
+          return '<article class="formation-card" data-reveal>' +
+            '<h3>' + esc(f.title) + '</h3>' +
+            '<p>' + esc(f.description) + '</p>' +
+            '<dl class="formation-meta">' +
+            '<div><dt>Public</dt><dd>' + esc(f.audience) + '</dd></div>' +
+            '<div><dt>Durée</dt><dd>' + esc(f.duration) + '</dd></div>' +
+            '<div><dt>Modalité</dt><dd>' + esc(f.modality) + '</dd></div>' +
+            '</dl>' +
+            (benefits ? '<ul class="formation-benefits">' + benefits + '</ul>' : '') +
+            '<a class="btn btn-primary formation-cta" href="' + esc(wa) + '" target="_blank" rel="noopener noreferrer" data-magnetic>Je souhaite participer</a>' +
+            '</article>';
+        }).join('');
+      }
+    }
+
+    if (data.blog) {
+      setText('blog-title', data.blog.title);
+      setText('blog-subtitle', data.blog.subtitle);
+      var blogGrid = document.getElementById('blog-grid');
+      if (blogGrid && data.blog.items) {
+        blogGrid.innerHTML = data.blog.items.map(function(post){
+          return '<article class="blog-card" data-reveal>' +
+            '<time datetime="' + esc(post.date) + '">' + esc(post.date) + ', ' + esc(post.readTime || '') + '</time>' +
+            '<h3>' + esc(post.title) + '</h3>' +
+            '<p>' + esc(post.excerpt) + '</p>' +
+            '<button type="button" class="blog-read" data-blog-slug="' + esc(post.slug) + '">Lire l\'article →</button>' +
+            '<div class="blog-body hidden" id="blog-' + esc(post.slug) + '">' + esc(post.body || '').replace(/\n/g, '<br>') + '</div>' +
+            '</article>';
+        }).join('');
+      }
     }
 
     setText('impact-title', data.impact && data.impact.title);
@@ -238,16 +392,48 @@
       }).join('');
     }
 
-    if (data.testimonial) {
-      var q = document.getElementById('testimonial-quote');
-      if (q && data.testimonial.quote) q.textContent = '\u00ab ' + data.testimonial.quote + ' \u00bb';
-      setText('testimonial-author', data.testimonial.author);
-      setText('testimonial-role', data.testimonial.role);
+    var testimonialItems = (data.testimonials && data.testimonials.items) || [];
+    if (!testimonialItems.length && data.testimonial && data.testimonial.quote) {
+      testimonialItems = [{
+        quote: data.testimonial.quote,
+        author: data.testimonial.author,
+        role: data.testimonial.role,
+        company: '',
+        rating: 5,
+        published: true
+      }];
+    }
+    var published = testimonialItems.filter(function(t){ return t.published !== false; });
+    var ratingSummary = document.getElementById('rating-summary');
+    if (ratingSummary && published.length) {
+      var avg = published.reduce(function(s, t){ return s + (t.rating || 5); }, 0) / published.length;
+      ratingSummary.innerHTML = '<span class="rating-avg">' + avg.toFixed(1) + '</span> ' + starsHtml(Math.round(avg)) +
+        ' <span class="rating-count">(' + published.length + ' avis)</span>';
+    }
+    var testimonialsGrid = document.getElementById('testimonials-grid');
+    if (testimonialsGrid) {
+      testimonialsGrid.innerHTML = published.map(function(t){
+        return '<blockquote class="testimonial-card" data-reveal>' +
+          '<div class="testimonial-stars" aria-label="Note : ' + (t.rating || 5) + ' sur 5">' + starsHtml(t.rating || 5) + '</div>' +
+          '<p>\u00ab ' + esc(t.quote) + ' \u00bb</p>' +
+          '<footer><b>' + esc(t.author) + '</b>' +
+          '<small>' + esc(t.role) + (t.company ? ', ' + esc(t.company) : '') + '</small></footer></blockquote>';
+      }).join('');
     }
 
     if (data.partners) {
       setText('trusted-title', data.partners.title);
       setText('trusted-subtitle', data.partners.subtitle);
+      var trustedTrack = document.getElementById('trusted-track');
+      if (trustedTrack && data.partners.items) {
+        var cards = data.partners.items.map(function(item){
+          var logo = item.logo ? '<img src="' + esc(assetUrl(item.logo)) + '" alt="Logo ' + esc(item.name || 'partenaire') + '" loading="lazy">' : '<span>' + esc(item.name || 'Partenaire') + '</span>';
+          var inner = '<div class="trusted-card">' + logo + '<small>' + esc(item.name || '') + '</small></div>';
+          if (item.url) return '<a class="trusted-card-link" href="' + esc(item.url) + '" target="_blank" rel="noopener noreferrer">' + inner + '</a>';
+          return inner;
+        }).join('');
+        trustedTrack.innerHTML = cards + cards;
+      }
       var trustedGrid = document.getElementById('trusted-grid');
       if (trustedGrid && data.partners.items) {
         trustedGrid.innerHTML = data.partners.items.map(function(item){
@@ -280,33 +466,19 @@
       if (data.cv.label) cv.textContent = data.cv.label;
     }
 
+    var waMsg = (data.contact && data.contact.whatsappMessage) || 'Bonjour Kalebia, je souhaite discuter d\'une collaboration.';
+    var waLink = whatsappUrl(data.profile && data.profile.whatsapp, waMsg);
+    var contactWa = document.getElementById('contact-whatsapp');
+    if (contactWa) contactWa.href = waLink;
+    var waFloat = document.getElementById('wa-float');
+    if (waFloat) waFloat.href = waLink;
+
     var socials = document.getElementById('socials');
-    if (socials && data.social) {
-      socials.innerHTML = '';
-      data.social.forEach(function(item){
-        if (!item.url) return;
-        var label = item.label || item.id || 'Réseau social';
-        var a = document.createElement('a');
-        a.href = item.url;
-        a.className = 'social-link';
-        a.target = '_blank';
-        a.rel = 'noopener noreferrer';
-        a.setAttribute('aria-label', label);
-        a.setAttribute('data-cursor', '');
-        a.title = label;
-        var icon = socialIconPath(item.id);
-        if (icon) {
-          a.innerHTML = '<img src="' + esc(assetUrl(icon)) + '" alt="" width="22" height="22" loading="lazy" decoding="async">' +
-            '<span class="social-label">' + esc(label) + '</span>';
-        } else {
-          a.innerHTML = '<span class="social-label">' + esc(label) + '</span>';
-        }
-        socials.appendChild(a);
-      });
-    }
+    renderSocialLinks(socials, data.social);
+    renderSocialLinks(document.getElementById('foot-socials'), data.social);
 
     var footLoc = document.getElementById('foot-location');
-    if (footLoc) footLoc.textContent = name + ' · Douala, Cameroun';
+    if (footLoc) footLoc.textContent = name + ', Douala, Cameroun';
 
     var footRole = document.getElementById('foot-role');
     if (footRole) footRole.textContent = meta.jobTitle || '';

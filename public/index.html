@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kalebia Nyoue Franck · Project & Community Manager</title>
+<title>Kalebia Nyoue Franck, Project & Community Manager</title>
 <meta name="description" content="Kalebia Nyoue Franck, Project Manager & Community Manager à Douala. Des communautés qui vibrent, des projets qui aboutissent.">
 <meta name="author" content="Kalebia Nyoue Franck">
 <meta name="robots" content="index, follow">
@@ -13,13 +13,13 @@
 <meta property="og:locale" content="fr_FR">
 <meta property="og:url" content="https://kalebia.dev/">
 <meta property="og:site_name" content="Kalebia Nyoue Franck">
-<meta property="og:title" content="Kalebia Nyoue Franck · Project & Community Manager">
+<meta property="og:title" content="Kalebia Nyoue Franck, Community Manager & Project Manager">
 <meta property="og:description" content="Project Manager & Community Manager à Douala. Des communautés qui vibrent, des projets qui aboutissent.">
 <meta property="og:image" content="https://kalebia.dev/assets/og-image.svg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Kalebia Nyoue Franck · Project & Community Manager">
+<meta name="twitter:title" content="Kalebia Nyoue Franck, Community Manager & Project Manager">
 <meta name="twitter:description" content="Project Manager & Community Manager à Douala. Des communautés qui vibrent, des projets qui aboutissent.">
 <meta name="twitter:image" content="https://kalebia.dev/assets/og-image.svg">
 <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
@@ -69,8 +69,11 @@
       <a href="#apropos">À propos</a>
       <a href="#expertise">Expertise</a>
       <a href="#travaux">Réalisations</a>
+      <a href="#formations">Formations</a>
+      <a href="#blog">Insights</a>
       <a href="#methode">Méthode</a>
       <a href="#contact" class="nav-cta" data-magnetic data-cursor>Me contacter</a>
+      <button type="button" class="theme-toggle" id="themeToggle" aria-label="Basculer le mode sombre / clair" title="Mode sombre / clair">◐</button>
     </div>
     <button class="burger" id="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navlinks">
       <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
@@ -85,17 +88,17 @@
   <div class="blob b3" data-depth="0.4" aria-hidden="true"></div>
   <div class="wrap hero-grid">
     <div class="hero-text">
-      <span class="eyebrow up" id="hero-eyebrow">Project Manager · Community Manager · Douala</span>
+      <span class="eyebrow up" id="hero-eyebrow">Community Manager, créateur de contenu, stratège digital</span>
       <h1 class="up" id="hero-name">Kalebia<br><span class="ln2">Nyoue Franck</span></h1>
       <p class="thesis up" data-scramble="Des communautés qui vibrent. Des projets qui aboutissent."></p>
-      <p class="headline up" id="hero-headline">Je transforme les communautés en leviers de croissance.</p>
+      <p class="headline up" id="hero-headline">Community Manager &amp; stratège digital. Je fais grandir vos communautés et vos projets.</p>
       <p class="lede up" id="hero-lede">J'accompagne les marques à transformer une audience en communauté engagée, et une idée en projet livré, du cadrage à la mesure.</p>
       <div class="hero-actions up">
         <a href="#travaux" class="btn btn-primary" data-magnetic data-cursor>Voir mes réalisations →</a>
         <a href="#contact" class="btn btn-ghost" data-magnetic data-cursor>Travaillons ensemble</a>
       </div>
     </div>
-    <aside class="hero-orbit up" id="heroOrbit" aria-label="Réseaux sociaux animés — cliquez pour interagir">
+    <aside class="hero-orbit up" id="heroOrbit" aria-label="Réseaux sociaux animés, cliquez pour interagir">
       <span class="orbit-halo" aria-hidden="true"></span>
       <div class="orbit-stage" id="orbitStage">
         <button type="button" class="ochip" data-name="Instagram" data-depth="1.2" style="--x:6%;--y:8%;--sz:74px;--t:5.6s;--d:0s"><span class="floaty"><span class="face2" style="--bg:linear-gradient(140deg,#feda75,#fa7e1e 32%,#d62976 64%,#962fbf);--logo:url(/assets/social/instagram.svg)"></span></span></button>
@@ -110,7 +113,16 @@
         <button type="button" class="ochip" data-name="Telegram" data-depth="1.4" style="--x:14%;--y:30%;--sz:56px;--t:7s;--d:.7s"><span class="floaty"><span class="face2" style="--bg:linear-gradient(140deg,#37bbfe,#007dbb);--logo:url(/assets/social/telegram.svg)"></span></span></button>
         <button type="button" class="ochip" data-name="Threads" data-depth="0.9" style="--x:85%;--y:52%;--sz:54px;--t:6.5s;--d:.45s"><span class="floaty"><span class="face2" style="--bg:linear-gradient(140deg,#3a3a3a,#000);--logo:url(/assets/social/threads.svg)"></span></span></button>
       </div>
-      <div class="orbit-meter"><span class="dot" aria-hidden="true"></span><span id="orbitCount">0</span>&nbsp;interactions</div>
+      <div class="orbit-meter" role="status" aria-live="polite" aria-label="Compteur d'interactions avec les logos">
+        <div class="orbit-meter-stat">
+          <span class="orbit-meter-num" id="orbitCount">0</span>
+          <span class="orbit-meter-copy">
+            <span class="orbit-meter-label">interactions</span>
+            <span class="orbit-meter-hint">Touche les logos</span>
+          </span>
+        </div>
+        <span class="orbit-meter-live"><span class="orbit-meter-dot" aria-hidden="true"></span>Live</span>
+      </div>
     </aside>
   </div>
 </header>
@@ -123,13 +135,16 @@
   <div class="wrap about-grid">
     <figure class="portrait" data-reveal="left" data-tilt>
       <img id="portrait-img" src="assets/portrait.svg" alt="Portrait de Kalebia Nyoue Franck" width="400" height="500" loading="lazy">
-      <figcaption class="ph" id="portrait-caption"><b>Kalebia Nyoue Franck</b><span class="ph-loc">Douala · Cameroun · FR / EN</span></figcaption>
+      <figcaption class="ph" id="portrait-caption"><b>Kalebia Nyoue Franck</b><span class="ph-loc">Douala, Cameroun (FR / EN)</span></figcaption>
     </figure>
     <div class="about-text" data-reveal="right">
       <span class="eyebrow">À propos</span>
       <h2 id="apropos-title" style="font-size:clamp(2rem,4vw,3rem);margin:1rem 0 1.5rem">Je fais le lien entre les gens, les marques et les délais.</h2>
+      <p class="about-synergy" id="about-synergy"></p>
       <div id="about-paragraphs"></div>
+      <div class="about-blocks" id="about-blocks"></div>
       <div class="about-tags" id="about-tags" data-stagger></div>
+      <div class="about-gallery" id="about-gallery" aria-label="Galerie photos"></div>
     </div>
   </div>
 </section>
@@ -145,6 +160,17 @@
   </div>
 </section>
 
+<section class="block platforms" id="plateformes" aria-labelledby="platforms-title">
+  <div class="wrap">
+    <div class="block-head" data-reveal>
+      <span class="eyebrow">Réseaux sociaux</span>
+      <h2 id="platforms-title">Plateformes gérées</h2>
+      <p id="platforms-subtitle">Une couverture multi-réseaux pour toucher votre audience là où elle est.</p>
+    </div>
+    <div class="platforms-grid" id="platforms-grid" data-stagger></div>
+  </div>
+</section>
+
 <section class="block" id="travaux" aria-labelledby="travaux-title">
   <div class="wrap">
     <div class="block-head" data-reveal>
@@ -153,6 +179,28 @@
       <p id="travaux-subtitle">Les entreprises, marques et projets que j'ai accompagnés en community &amp; project management.</p>
     </div>
     <div class="work-list" id="work-list"></div>
+  </div>
+</section>
+
+<section class="block formations" id="formations" aria-labelledby="formations-title">
+  <div class="wrap">
+    <div class="block-head" data-reveal>
+      <span class="eyebrow">Formations</span>
+      <h2 id="formations-title">Mes Formations</h2>
+      <p id="formations-subtitle">Des parcours concrets pour maîtriser le community management et les réseaux sociaux.</p>
+    </div>
+    <div class="formations-grid" id="formations-grid"></div>
+  </div>
+</section>
+
+<section class="block blog" id="blog" aria-labelledby="blog-title">
+  <div class="wrap">
+    <div class="block-head" data-reveal>
+      <span class="eyebrow">Blog</span>
+      <h2 id="blog-title">Blog / Insights</h2>
+      <p id="blog-subtitle">Réflexions, méthodes et conseils sur le community management et la gestion de projet.</p>
+    </div>
+    <div class="blog-grid" id="blog-grid"></div>
   </div>
 </section>
 
@@ -170,17 +218,48 @@
   </div>
 </section>
 
-<section class="block quote" aria-labelledby="quote-title">
-  <div class="wrap" data-reveal>
-    <span class="eyebrow">Témoignage</span>
-    <blockquote id="testimonial-quote" style="margin-top:1.4rem"></blockquote>
-    <footer class="qby">
-      <div class="qav" aria-hidden="true"></div>
-      <div>
-        <b id="testimonial-author"></b>
-        <small id="testimonial-role"></small>
-      </div>
-    </footer>
+<section class="block testimonials" id="temoignages" aria-labelledby="testimonials-title">
+  <div class="wrap">
+    <div class="block-head" data-reveal>
+      <span class="eyebrow">Témoignages</span>
+      <h2 id="testimonials-title">Ce qu'ils en disent</h2>
+      <div class="rating-summary" id="rating-summary" aria-live="polite"></div>
+    </div>
+    <div class="testimonials-grid" id="testimonials-grid"></div>
+    <div class="testimonial-form-wrap" data-reveal>
+      <h3 class="form-title">Déposer un avis</h3>
+      <form class="testimonial-form" id="testimonialForm" novalidate>
+        <div class="form-row">
+          <label for="t-name">Nom</label>
+          <input type="text" id="t-name" name="author" required autocomplete="name" placeholder="Votre nom">
+        </div>
+        <div class="form-row">
+          <label for="t-role">Poste</label>
+          <input type="text" id="t-role" name="role" required placeholder="Ex. Directeur marketing">
+        </div>
+        <div class="form-row">
+          <label for="t-company">Entreprise</label>
+          <input type="text" id="t-company" name="company" required placeholder="Ex. Ma société">
+        </div>
+        <div class="form-row">
+          <span class="label">Note</span>
+          <div class="star-input" id="starInput" role="radiogroup" aria-label="Note de 1 à 5 étoiles">
+            <button type="button" data-star="1" aria-label="1 étoile">★</button>
+            <button type="button" data-star="2" aria-label="2 étoiles">★</button>
+            <button type="button" data-star="3" aria-label="3 étoiles">★</button>
+            <button type="button" data-star="4" aria-label="4 étoiles">★</button>
+            <button type="button" data-star="5" aria-label="5 étoiles">★</button>
+          </div>
+          <input type="hidden" name="rating" id="t-rating" value="5">
+        </div>
+        <div class="form-row">
+          <label for="t-quote">Commentaire</label>
+          <textarea id="t-quote" name="quote" required rows="3" placeholder="Votre témoignage…"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" data-magnetic>Envoyer mon avis</button>
+        <p class="form-note" id="testimonialFormNote" role="status" aria-live="polite"></p>
+      </form>
+    </div>
   </div>
 </section>
 
@@ -191,7 +270,9 @@
       <h2 id="trusted-title">Ils m’ont fait confiance.</h2>
       <p id="trusted-subtitle">Entreprises, marques et partenaires avec lesquels j’ai collaboré.</p>
     </div>
-    <div class="trusted-grid" id="trusted-grid"></div>
+    <div class="trusted-marquee" id="trusted-marquee" aria-label="Logos partenaires défilants">
+      <div class="trusted-track" id="trusted-track"></div>
+    </div>
   </div>
 </section>
 
@@ -202,6 +283,7 @@
     <p id="contact-lede">Un projet, une campagne ou une communauté à faire grandir ? Parlons-en.</p>
     <div class="contact-actions">
       <a href="mailto:bonjour@kalebia.dev" id="contact-email" class="btn btn-primary" data-magnetic data-cursor>bonjour@kalebia.dev</a>
+      <a href="#" id="contact-whatsapp" class="btn btn-whatsapp" data-magnetic data-cursor target="_blank" rel="noopener noreferrer">Me contacter sur WhatsApp</a>
       <a href="assets/CV-Kalebia-Nyoue-Franck.pdf" id="cv-link" class="btn btn-ghost" data-magnetic data-cursor download>Télécharger le CV</a>
     </div>
     <nav class="socials" id="socials" aria-label="Réseaux sociaux"></nav>
@@ -211,10 +293,15 @@
 
 <footer>
   <div class="wrap foot-inner">
-    <span>© <span id="yr"></span> <span id="foot-location">Kalebia Nyoue Franck · Douala, Cameroun</span></span>
+    <span>© <span id="yr"></span> <span id="foot-location">Kalebia Nyoue Franck, Douala, Cameroun</span></span>
+    <nav class="foot-socials" id="foot-socials" aria-label="Réseaux sociaux"></nav>
     <span id="foot-role">Project &amp; Community Manager</span>
   </div>
 </footer>
+
+<a href="#" id="wa-float" class="wa-float" target="_blank" rel="noopener noreferrer" aria-label="Me contacter sur WhatsApp" title="WhatsApp">
+  <img src="/assets/social/whatsapp.svg" alt="" width="28" height="28">
+</a>
 
 <script src="/js/site-data.js"></script>
 <script src="/js/site.js"></script>

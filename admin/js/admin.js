@@ -176,6 +176,7 @@
       field('Prénom', input('profile.firstName', site.profile.firstName)) +
       field('Nom', input('profile.lastName', site.profile.lastName)) +
       field('Accroche (hero)', input('profile.eyebrow', site.profile.eyebrow)) +
+      field('WhatsApp (numéro international)', input('profile.whatsapp', site.profile.whatsapp), 'Ex. 237600000000') +
       field('Localisation', input('profile.location', site.profile.location)) +
       field('Email', input('profile.email', site.profile.email, 'email')) +
       field('Titre du poste', input('meta.jobTitle', site.meta.jobTitle)) +
@@ -192,17 +193,9 @@
     $('panel-hero').innerHTML =
       '<div class="card"><h2>Section hero</h2>' +
       field('Phrase d\'accroche (thesis)', input('hero.thesis', site.hero.thesis)) +
+      field('Headline CM', input('hero.headline', site.hero.headline)) +
       field('Texte d\'introduction', textarea('hero.lede', site.hero.lede)) +
       '</div>' +
-      '<div class="card"><h2>Tableau de bord</h2><div class="grid-2">' +
-      field('Communauté — chiffre', input('dashboard.community.count', site.dashboard.community.count, 'number')) +
-      field('Communauté — suffixe', input('dashboard.community.suffix', site.dashboard.community.suffix)) +
-      field('Communauté — label', input('dashboard.community.label', site.dashboard.community.label)) +
-      field('Engagement — chiffre', input('dashboard.engagement.count', site.dashboard.engagement.count, 'number')) +
-      field('Engagement — suffixe', input('dashboard.engagement.suffix', site.dashboard.engagement.suffix)) +
-      field('Engagement — décimales', input('dashboard.engagement.dec', site.dashboard.engagement.dec, 'number')) +
-      field('Engagement — label', input('dashboard.engagement.label', site.dashboard.engagement.label)) +
-      '</div></div>' +
       '<div class="card"><h2>Bandeau défilant</h2><p style="color:var(--ink-soft);font-size:.9rem;margin-bottom:12px">Un élément par ligne.</p>' +
       field('Éléments', textarea('marquee-text', (site.marquee || []).join('\n'))) +
       '</div>';
@@ -217,10 +210,26 @@
     $('panel-about').innerHTML =
       '<div class="card"><h2>À propos</h2>' +
       field('Titre', input('about.title', site.about.title)) +
+      field('Phrase synergie', input('about.synergy', site.about.synergy || '')) +
       field('Paragraphe 1 (HTML autorisé : &lt;strong&gt;)', textarea('about-p1', site.about.paragraphs[0] || '')) +
       field('Paragraphe 2', textarea('about-p2', site.about.paragraphs[1] || '')) +
       field('Compétences (une par ligne)', textarea('about-tags', (site.about.tags || []).join('\n'))) +
       '</div>' +
+      '<div class="card"><h2>Blocs CM / PM</h2><div class="grid-2">' +
+      field('Titre bloc CM', input('about.cmBlock.title', (site.about.cmBlock && site.about.cmBlock.title) || 'Community Manager')) +
+      field('Titre bloc PM', input('about.pmBlock.title', (site.about.pmBlock && site.about.pmBlock.title) || 'Project Manager')) +
+      '</div>' +
+      field('Compétences CM (une par ligne)', textarea('about-cm-items', ((site.about.cmBlock && site.about.cmBlock.items) || []).join('\n'))) +
+      field('Compétences PM (une par ligne)', textarea('about-pm-items', ((site.about.pmBlock && site.about.pmBlock.items) || []).join('\n'))) +
+      '</div>' +
+      '<div class="card"><h2>Galerie photos</h2>' +
+      '<p style="color:var(--ink-soft);font-size:.9rem;margin-bottom:12px">Photos en action, événements, formations…</p>' +
+      '<div class="upload-zone"><input type="file" id="upload-gallery" accept="image/*"><input type="text" id="gallery-caption" placeholder="Légende (optionnelle)" style="margin-top:10px;width:100%"></div>' +
+      '<div class="tag-input" id="gallery-list">' + ((site.about.gallery || []).map(function(g, gi){
+        return '<span class="tag-chip"><img src="/' + escAttr(g.src || g) + '" alt="" style="width:48px;height:48px;object-fit:cover;border-radius:6px">' +
+          escHtml(g.caption || '') +
+          '<button type="button" data-remove-gallery-photo="' + gi + '" title="Supprimer">×</button></span>';
+      }).join('')) + '</div></div>' +
       '<div class="card"><h2>Portrait</h2>' +
       '<div class="upload-zone">' +
       (site.portrait ? '<img src="/' + escAttr(site.portrait) + '" alt="Portrait">' : '') +
@@ -244,8 +253,29 @@
       site.about.tags = e.target.value.split('\n').map(function(s){ return s.trim(); }).filter(Boolean);
       markDirty();
     });
+    if (!site.about.cmBlock) site.about.cmBlock = { title: 'Community Manager', items: [] };
+    if (!site.about.pmBlock) site.about.pmBlock = { title: 'Project Manager', items: [] };
+    $('panel-about').querySelector('[data-path="about-cm-items"]').addEventListener('input', function(e){
+      site.about.cmBlock.items = e.target.value.split('\n').map(function(s){ return s.trim(); }).filter(Boolean);
+      markDirty();
+    });
+    $('panel-about').querySelector('[data-path="about-pm-items"]').addEventListener('input', function(e){
+      site.about.pmBlock.items = e.target.value.split('\n').map(function(s){ return s.trim(); }).filter(Boolean);
+      markDirty();
+    });
     $('upload-portrait').addEventListener('change', function(){ uploadFile(this.files[0], 'portrait', { input: this }); });
     $('upload-cv').addEventListener('change', function(){ uploadFile(this.files[0], 'cv', { input: this }); });
+    var uploadGallery = $('upload-gallery');
+    if (uploadGallery) uploadGallery.addEventListener('change', function(){
+      var cap = $('gallery-caption');
+      uploadFile(uploadGallery.files[0], 'gallery-photo', { input: uploadGallery, caption: cap ? cap.value : '', onDone: renderAbout });
+    });
+    document.querySelectorAll('[data-remove-gallery-photo]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        site.about.gallery.splice(Number(btn.dataset.removeGalleryPhoto), 1);
+        markDirty(); renderAbout();
+      });
+    });
   }
 
   function renderExpertise(){
@@ -306,6 +336,9 @@
       field('Entreprise / marque', input('projects.items.' + i + '.company', p.company || p.title)) +
       field('URL de la page', input('projects.items.' + i + '.slug', p.slug || slugify(p.company || p.title)), 'Exemple : apple, orange-money, campagne-lancement') +
       field('Catégorie', input('projects.items.' + i + '.kind', p.kind)) +
+      field('Plateforme(s)', input('projects.items.' + i + '.platform', p.platform || '')) +
+      field('Objectif', textarea('projects.items.' + i + '.objective', p.objective || '')) +
+      field('Résultats clés', textarea('projects.items.' + i + '.results', p.results || '')) +
       field('Titre de la collaboration', input('projects.items.' + i + '.title', p.title)) +
       field('Résumé affiché dans la liste', textarea('projects.items.' + i + '.description', p.description)) +
       field('Description détaillée de la page dédiée', textarea('projects.items.' + i + '.detailDescription', p.detailDescription || p.description)) +
@@ -483,14 +516,123 @@
     });
   }
 
+  function renderFormations(){
+    if (!site.formations) site.formations = { title: '', subtitle: '', items: [] };
+    var html = '<div class="card"><h2>Formations dispensées</h2>' +
+      field('Titre', input('formations.title', site.formations.title)) +
+      field('Sous-titre', textarea('formations.subtitle', site.formations.subtitle)) +
+      '<button type="button" class="btn btn-primary btn-sm" id="add-formation" style="margin-top:12px">+ Ajouter une formation</button></div>';
+    (site.formations.items || []).forEach(function(f, i){
+      html += '<div class="list-item"><div class="list-item-head"><strong>' + escHtml(f.title || ('Formation ' + (i+1))) + '</strong>' +
+        '<button type="button" class="btn btn-ghost btn-sm" data-remove-formation="' + i + '">Supprimer</button></div>' +
+        field('Titre', input('formations.items.' + i + '.title', f.title)) +
+        field('Description', textarea('formations.items.' + i + '.description', f.description)) +
+        field('Public cible', input('formations.items.' + i + '.audience', f.audience)) +
+        field('Durée', input('formations.items.' + i + '.duration', f.duration)) +
+        field('Modalité', input('formations.items.' + i + '.modality', f.modality)) +
+        field('Bénéfices (un par ligne)', textarea('formation-benefits-' + i, (f.benefits || []).join('\n'))) +
+        '</div>';
+    });
+    $('panel-formations').innerHTML = html;
+    bindPanel($('panel-formations'));
+    (site.formations.items || []).forEach(function(_, i){
+      var el = $('panel-formations').querySelector('[data-path="formation-benefits-' + i + '"]');
+      if (el) el.addEventListener('input', function(e){
+        site.formations.items[i].benefits = e.target.value.split('\n').map(function(s){ return s.trim(); }).filter(Boolean);
+        markDirty();
+      });
+    });
+    var addBtn = $('add-formation');
+    if (addBtn) addBtn.addEventListener('click', function(){
+      site.formations.items.push({ title:'', description:'', audience:'', duration:'', modality:'', benefits:[] });
+      markDirty(); renderFormations();
+    });
+    document.querySelectorAll('[data-remove-formation]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        site.formations.items.splice(Number(btn.dataset.removeFormation), 1);
+        markDirty(); renderFormations();
+      });
+    });
+  }
+
+  function renderBlog(){
+    if (!site.blog) site.blog = { title: '', subtitle: '', items: [] };
+    var html = '<div class="card"><h2>Blog / Insights</h2>' +
+      field('Titre', input('blog.title', site.blog.title)) +
+      field('Sous-titre', textarea('blog.subtitle', site.blog.subtitle)) +
+      '<button type="button" class="btn btn-primary btn-sm" id="add-post" style="margin-top:12px">+ Ajouter un article</button></div>';
+    (site.blog.items || []).forEach(function(p, i){
+      html += '<div class="list-item"><div class="list-item-head"><strong>' + escHtml(p.title || ('Article ' + (i+1))) + '</strong>' +
+        '<button type="button" class="btn btn-ghost btn-sm" data-remove-post="' + i + '">Supprimer</button></div>' +
+        field('Slug URL', input('blog.items.' + i + '.slug', p.slug)) +
+        field('Titre', input('blog.items.' + i + '.title', p.title)) +
+        field('Extrait', textarea('blog.items.' + i + '.excerpt', p.excerpt)) +
+        field('Date', input('blog.items.' + i + '.date', p.date)) +
+        field('Temps de lecture', input('blog.items.' + i + '.readTime', p.readTime)) +
+        field('Contenu', textarea('blog.items.' + i + '.body', p.body)) +
+        '</div>';
+    });
+    $('panel-blog').innerHTML = html;
+    bindPanel($('panel-blog'));
+    var addPost = $('add-post');
+    if (addPost) addPost.addEventListener('click', function(){
+      site.blog.items.push({ slug:'article-' + (site.blog.items.length + 1), title:'', excerpt:'', date:'', readTime:'5 min', body:'' });
+      markDirty(); renderBlog();
+    });
+    document.querySelectorAll('[data-remove-post]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        site.blog.items.splice(Number(btn.dataset.removePost), 1);
+        markDirty(); renderBlog();
+      });
+    });
+  }
+
   function renderTestimonial(){
-    $('panel-testimonial').innerHTML =
-      '<div class="card"><h2>Témoignage client</h2>' +
-      field('Citation', textarea('testimonial.quote', site.testimonial.quote)) +
-      field('Auteur', input('testimonial.author', site.testimonial.author)) +
-      field('Poste & entreprise', input('testimonial.role', site.testimonial.role)) +
-      '</div>';
+    if (!site.testimonials) site.testimonials = { items: [], pending: [] };
+    var html = '<div class="card"><h2>Témoignages publiés</h2>';
+    (site.testimonials.items || []).forEach(function(t, i){
+      html += '<div class="list-item"><div class="list-item-head"><strong>' + escHtml(t.author || 'Avis') + '</strong>' +
+        '<button type="button" class="btn btn-ghost btn-sm" data-remove-testimonial="' + i + '">Supprimer</button></div>' +
+        field('Citation', textarea('testimonials.items.' + i + '.quote', t.quote)) +
+        field('Auteur', input('testimonials.items.' + i + '.author', t.author)) +
+        field('Poste', input('testimonials.items.' + i + '.role', t.role)) +
+        field('Entreprise', input('testimonials.items.' + i + '.company', t.company)) +
+        field('Note (1-5)', input('testimonials.items.' + i + '.rating', t.rating, 'number')) +
+        '</div>';
+    });
+    html += '</div><div class="card"><h2>En attente de modération</h2>';
+    if (!(site.testimonials.pending || []).length) html += '<p style="color:var(--ink-soft)">Aucun avis en attente.</p>';
+    (site.testimonials.pending || []).forEach(function(t, i){
+      html += '<div class="list-item"><p><strong>' + escHtml(t.author) + '</strong> — ' + escHtml(t.quote) + '</p>' +
+        '<div class="list-actions" style="margin-top:8px">' +
+        '<button type="button" class="btn btn-primary btn-sm" data-approve-testimonial="' + i + '">Publier</button>' +
+        '<button type="button" class="btn btn-ghost btn-sm" data-reject-testimonial="' + i + '">Rejeter</button></div></div>';
+    });
+    html += '</div>';
+    $('panel-testimonial').innerHTML = html;
     bindPanel($('panel-testimonial'));
+    document.querySelectorAll('[data-remove-testimonial]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        site.testimonials.items.splice(Number(btn.dataset.removeTestimonial), 1);
+        markDirty(); renderTestimonial();
+      });
+    });
+    document.querySelectorAll('[data-approve-testimonial]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var i = Number(btn.dataset.approveTestimonial);
+        var t = site.testimonials.pending[i];
+        t.published = true;
+        site.testimonials.items.push(t);
+        site.testimonials.pending.splice(i, 1);
+        markDirty(); renderTestimonial();
+      });
+    });
+    document.querySelectorAll('[data-reject-testimonial]').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        site.testimonials.pending.splice(Number(btn.dataset.rejectTestimonial), 1);
+        markDirty(); renderTestimonial();
+      });
+    });
   }
 
   function renderContact(){
@@ -498,6 +640,7 @@
       field('Titre (partie 1)', input('contact.title', site.contact.title)) +
       field('Mot en italique', input('contact.highlight', site.contact.highlight)) +
       field('Texte d\'invitation', textarea('contact.lede', site.contact.lede)) +
+      field('Message WhatsApp pré-rempli', textarea('contact.whatsappMessage', site.contact.whatsappMessage || '')) +
       '</div><div class="card"><h2>Réseaux sociaux</h2>';
     (site.social || []).forEach(function(s, i){
       html += '<div class="list-item"><strong>' + escHtml(s.label || s.id) + '</strong>' +
@@ -518,6 +661,8 @@
     renderExpertise();
     renderProjects();
     renderPartners();
+    renderFormations();
+    renderBlog();
     renderImpact();
     renderMethod();
     renderTestimonial();
@@ -588,6 +733,7 @@
     fd.append('type', type);
     if (extra.projectIndex != null) fd.append('projectIndex', extra.projectIndex);
     if (extra.partnerIndex != null) fd.append('partnerIndex', extra.partnerIndex);
+    if (extra.caption != null) fd.append('caption', extra.caption);
     fd.append('file', file);
     if (zone) zone.classList.add('is-busy');
     setSaveState('saving', 'Upload en cours…');
@@ -605,10 +751,11 @@
       site = data.site;
       dirty = false;
       setSaveState('saved', 'Upload enregistré');
-      var msg = type === 'cv' ? 'CV mis à jour ✓' : type === 'project-splash' ? 'Image splash mise à jour ✓' : type === 'project-gallery' ? 'Visuel ajouté à la galerie ✓' : type === 'project-video' ? 'Vidéo ajoutée ✓' : type === 'partner-logo' ? 'Logo partenaire mis à jour ✓' : 'Portrait mis à jour ✓';
+      var msg = type === 'cv' ? 'CV mis à jour ✓' : type === 'project-splash' ? 'Image splash mise à jour ✓' : type === 'project-gallery' ? 'Visuel ajouté à la galerie ✓' : type === 'project-video' ? 'Vidéo ajoutée ✓' : type === 'partner-logo' ? 'Logo partenaire mis à jour ✓' : type === 'gallery-photo' ? 'Photo galerie ajoutée ✓' : 'Portrait mis à jour ✓';
       toast(msg);
       if (type === 'project-splash' || type === 'project-gallery' || type === 'project-video') renderProjects();
       else if (type === 'partner-logo') renderPartners();
+      else if (extra.onDone) extra.onDone();
       else renderAbout();
     }).catch(function(e){
       setSaveState('error', 'Upload échoué');
