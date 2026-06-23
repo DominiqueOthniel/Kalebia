@@ -384,11 +384,74 @@
     });
   }
 
+  function initHeroOrbit(){
+    var stage = document.getElementById('orbitStage');
+    var host = document.getElementById('heroOrbit');
+    if (!stage || !host) return;
+    var meter = host.querySelector('.orbit-meter');
+    var countEl = document.getElementById('orbitCount');
+    var chips = Array.prototype.slice.call(stage.querySelectorAll('.ochip'));
+    var count = 0;
+    try { count = parseInt(localStorage.getItem('knf_orbit') || '0', 10) || 0; } catch (e) {}
+    if (countEl) countEl.textContent = count;
+
+    if (!reduce && !touch) {
+      var raf = null, lastE = null;
+      host.addEventListener('pointermove', function(e){ lastE = e; if (!raf) raf = requestAnimationFrame(apply); });
+      host.addEventListener('pointerleave', function(){
+        lastE = null; stage.style.transform = '';
+        chips.forEach(function(c){ c.style.transform = ''; });
+      });
+      function apply(){
+        raf = null; if (!lastE) return;
+        var r = host.getBoundingClientRect();
+        var mx = lastE.clientX - r.left, my = lastE.clientY - r.top;
+        var px = mx / r.width - .5, py = my / r.height - .5;
+        stage.style.transform = 'rotateY(' + (px * 16).toFixed(2) + 'deg) rotateX(' + (-py * 16).toFixed(2) + 'deg)';
+        chips.forEach(function(c){
+          var cr = c.getBoundingClientRect();
+          var cx = cr.left + cr.width / 2 - r.left, cy = cr.top + cr.height / 2 - r.top;
+          var dx = cx - mx, dy = cy - my, dist = Math.sqrt(dx * dx + dy * dy);
+          var R = 160, depth = parseFloat(c.dataset.depth || '1'), tx = 0, ty = 0;
+          if (dist < R && dist > 0) { var f = (1 - dist / R) * 46 * depth; tx = dx / dist * f; ty = dy / dist * f; }
+          c.style.transform = 'translate(' + tx.toFixed(1) + 'px,' + ty.toFixed(1) + 'px)';
+        });
+      }
+    }
+
+    function burst(chip){
+      count++;
+      try { localStorage.setItem('knf_orbit', String(count)); } catch (e) {}
+      if (countEl) countEl.textContent = count;
+      if (meter) { meter.classList.remove('bump'); void meter.offsetWidth; meter.classList.add('bump'); }
+      chip.classList.remove('pop'); void chip.offsetWidth; chip.classList.add('pop');
+      var b = document.createElement('span');
+      b.className = 'orbit-burst';
+      b.textContent = '+1';
+      b.style.setProperty('--c', '#5ba8d4');
+      var cr = chip.getBoundingClientRect(), hr = stage.getBoundingClientRect();
+      b.style.left = (cr.left + cr.width / 2 - hr.left) + 'px';
+      b.style.top = (cr.top + cr.height / 2 - hr.top) + 'px';
+      stage.appendChild(b);
+      var killed = false;
+      function kill(){ if (killed) return; killed = true; if (b.parentNode) b.parentNode.removeChild(b); }
+      b.addEventListener('animationend', kill);
+      setTimeout(kill, 1200);
+    }
+
+    chips.forEach(function(chip){
+      chip.addEventListener('click', function(){ burst(chip); });
+      chip.addEventListener('animationend', function(ev){ if (ev.animationName === 'opop') chip.classList.remove('pop'); });
+    });
+    if (meter) meter.addEventListener('animationend', function(){ meter.classList.remove('bump'); });
+  }
+
   var skipBtn = document.getElementById('skip');
   if (skipBtn) skipBtn.addEventListener('click', finishLoad);
   setTimeout(function(){ if (!done && !reduce) finishLoad(); }, 7000);
 
   initFloatIcons();
+  initHeroOrbit();
   bootPreloader();
 
   window.loadSiteData().then(function(data){
