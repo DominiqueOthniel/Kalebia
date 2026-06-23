@@ -38,16 +38,17 @@
   <canvas id="net" aria-hidden="true"></canvas>
   <button class="loader-skip" id="skip" type="button">Passer →</button>
   <div class="loader-core">
-    <div class="social-swirl" aria-hidden="true">
-      <span class="swirl-glow"></span>
-      <span class="orbit" style="--r:30px;--s:34px;--t:6s;--dir:normal;--tt:5s"><i class="ico" style="--logo:url(/assets/social/instagram.svg);background:#e26ba0"></i></span>
-      <span class="orbit" style="--r:54px;--s:38px;--t:9s;--dir:reverse;--tt:7s"><i class="ico" style="--logo:url(/assets/social/facebook.svg);background:#5b9be0"></i></span>
-      <span class="orbit" style="--r:40px;--s:30px;--t:7.5s;--dir:normal;--tt:6s"><i class="ico" style="--logo:url(/assets/social/x.svg);background:#f6f3ed"></i></span>
-      <span class="orbit" style="--r:66px;--s:36px;--t:11s;--dir:reverse;--tt:8s"><i class="ico" style="--logo:url(/assets/social/tiktok.svg);background:#3fe0e0"></i></span>
-      <span class="orbit" style="--r:46px;--s:34px;--t:8.5s;--dir:normal;--tt:6.5s"><i class="ico" style="--logo:url(/assets/social/snapchat.svg);background:#f4d23c"></i></span>
-      <span class="orbit" style="--r:74px;--s:32px;--t:13s;--dir:reverse;--tt:9s"><i class="ico" style="--logo:url(/assets/social/linkedin.svg);background:#5ba8d4"></i></span>
-      <span class="swirl-core"><span class="n" id="pctn">0</span><span class="s">%</span></span>
+    <div class="float-wrap" id="floatWrap" aria-hidden="true">
+      <div class="float-stage" id="floatStage">
+        <span class="fchip" style="--x:12%;--y:6%;--sz:64px;--t:5.4s;--d:0s"><b class="face" style="--bg:linear-gradient(140deg,#feda75,#fa7e1e 32%,#d62976 64%,#962fbf);--logo:url(/assets/social/instagram.svg)"></b></span>
+        <span class="fchip" style="--x:62%;--y:2%;--sz:60px;--t:6.6s;--d:.4s"><b class="face" style="--bg:linear-gradient(140deg,#4f7fe0,#1877f2);--logo:url(/assets/social/facebook.svg)"></b></span>
+        <span class="fchip" style="--x:40%;--y:34%;--sz:70px;--t:5.9s;--d:.2s"><b class="face" style="--bg:linear-gradient(140deg,#3a3a3a,#050505);--logo:url(/assets/social/x.svg)"></b></span>
+        <span class="fchip" style="--x:6%;--y:52%;--sz:58px;--t:7.2s;--d:.6s"><b class="face" style="--bg:linear-gradient(140deg,#69c9d0,#111 52%,#ee1d52);--logo:url(/assets/social/tiktok.svg)"></b></span>
+        <span class="fchip" style="--x:68%;--y:48%;--sz:62px;--t:6.2s;--d:.9s"><b class="face" style="--bg:linear-gradient(140deg,#fffc54,#f4d000);--fg:#1a1a1a;--logo:url(/assets/social/snapchat.svg)"></b></span>
+        <span class="fchip" style="--x:34%;--y:72%;--sz:56px;--t:7.8s;--d:.3s"><b class="face" style="--bg:linear-gradient(140deg,#2f86d4,#004182);--logo:url(/assets/social/linkedin.svg)"></b></span>
+      </div>
     </div>
+    <div class="loader-pct"><span id="pctn">0</span><span class="u">%</span></div>
     <div class="loader-name" id="lname" aria-hidden="true">
       <span>K</span><span>a</span><span>l</span><span>e</span><span>b</span><span>i</span><span>a</span>
       <span>&nbsp;</span><span>N</span><span>y</span><span>o</span><span>u</span><span>e</span>

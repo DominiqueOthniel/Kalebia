@@ -359,10 +359,36 @@
     }
   }
 
+  function initFloatIcons(){
+    var stage = document.getElementById('floatStage');
+    var wrap = document.getElementById('floatWrap');
+    if (!stage || !wrap) return;
+    if (loader && !reduce && !touch) {
+      loader.addEventListener('pointermove', function(e){
+        var r = wrap.getBoundingClientRect();
+        var px = (e.clientX - (r.left + r.width / 2)) / r.width;
+        var py = (e.clientY - (r.top + r.height / 2)) / r.height;
+        stage.style.transform = 'rotateY(' + (px * 18) + 'deg) rotateX(' + (-py * 18) + 'deg)';
+      });
+      loader.addEventListener('pointerleave', function(){ stage.style.transform = ''; });
+    }
+    stage.querySelectorAll('.fchip').forEach(function(chip){
+      chip.addEventListener('pointerdown', function(){
+        chip.classList.remove('pop');
+        void chip.offsetWidth;
+        chip.classList.add('pop');
+      });
+      chip.addEventListener('animationend', function(ev){
+        if (ev.animationName === 'fpop') chip.classList.remove('pop');
+      });
+    });
+  }
+
   var skipBtn = document.getElementById('skip');
   if (skipBtn) skipBtn.addEventListener('click', finishLoad);
   setTimeout(function(){ if (!done && !reduce) finishLoad(); }, 7000);
 
+  initFloatIcons();
   bootPreloader();
 
   window.loadSiteData().then(function(data){

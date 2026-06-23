@@ -40,18 +40,18 @@ img{max-width:100%;display:block}
 #loader{position:fixed;inset:0;z-index:1000;background:var(--night);display:flex;align-items:center;justify-content:center;overflow:hidden;clip-path:circle(150% at 50% 50%)}
 #loader canvas{position:absolute;inset:0;width:100%;height:100%}
 .loader-core{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;color:var(--paper)}
-.social-swirl{position:relative;width:240px;height:240px;animation:swirl-breathe 7s var(--ease) infinite}
-.swirl-glow{position:absolute;inset:50% auto auto 50%;width:150px;height:150px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(91,168,212,.32),rgba(212,180,131,.14) 45%,transparent 70%);filter:blur(6px);animation:swirl-pulse 3.4s ease-in-out infinite}
-.orbit{position:absolute;top:50%;left:50%;width:0;height:0;animation-name:swirl-spin;animation-duration:var(--t,9s);animation-timing-function:linear;animation-iteration-count:infinite;animation-direction:var(--dir,normal)}
-.orbit .ico{position:absolute;width:var(--s,36px);height:var(--s,36px);left:calc(var(--s,36px) / -2);top:calc((var(--r,50px) + var(--s,36px) / 2) * -1);-webkit-mask:var(--logo) center/contain no-repeat;mask:var(--logo) center/contain no-repeat;filter:drop-shadow(0 6px 14px rgba(15,31,61,.5));animation:swirl-tumble var(--tt,6s) ease-in-out infinite;will-change:transform}
-.swirl-core{position:absolute;inset:0;display:flex;align-items:baseline;justify-content:center;gap:2px;font-family:'Bricolage Grotesque';font-weight:800;color:var(--paper)}
-.swirl-core .n{font-size:1.7rem;line-height:1;font-variant-numeric:tabular-nums;opacity:.85}
-.swirl-core .s{font-size:.85rem;color:var(--gold);transform:translateY(-.25rem)}
-@keyframes swirl-spin{to{transform:rotate(360deg)}}
-@keyframes swirl-tumble{0%{transform:rotate(0) scale(1)}50%{transform:rotate(180deg) scale(1.18)}100%{transform:rotate(360deg) scale(1)}}
-@keyframes swirl-pulse{0%,100%{opacity:.65;transform:translate(-50%,-50%) scale(.92)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.08)}}
-@keyframes swirl-breathe{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(1.04) rotate(6deg)}}
-#loader.done .social-swirl{transition:transform .9s var(--ease),opacity .7s;transform:scale(.4);opacity:0}
+.float-wrap{position:relative;width:300px;height:250px;perspective:1000px}
+.float-stage{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .25s ease-out}
+.fchip{position:absolute;left:var(--x);top:var(--y);width:var(--sz,64px);height:var(--sz,64px);transform-style:preserve-3d;animation:ffloat var(--t,6s) ease-in-out var(--d,0s) infinite}
+.fchip .face{display:grid;place-items:center;width:100%;height:100%;border-radius:22px;background:var(--bg);box-shadow:0 24px 36px -12px rgba(0,0,0,.55),inset 0 2px 2px rgba(255,255,255,.45),inset 0 -8px 14px rgba(0,0,0,.28);transition:transform .28s var(--ease),box-shadow .28s;cursor:pointer}
+.fchip .face::after{content:"";width:56%;height:56%;background:var(--fg,#fff);-webkit-mask:var(--logo) center/contain no-repeat;mask:var(--logo) center/contain no-repeat}
+.fchip:hover .face{transform:translateZ(46px) scale(1.16) rotate(-4deg);box-shadow:0 38px 52px -14px rgba(0,0,0,.6),inset 0 2px 2px rgba(255,255,255,.55),inset 0 -8px 14px rgba(0,0,0,.3)}
+.fchip.pop .face{animation:fpop .55s var(--ease)}
+.loader-pct{margin-top:30px;font-family:'Bricolage Grotesque';font-weight:800;font-size:1.6rem;color:var(--paper);font-variant-numeric:tabular-nums}
+.loader-pct .u{font-size:.95rem;color:var(--gold);margin-left:1px;vertical-align:.35em}
+@keyframes ffloat{0%,100%{transform:translateY(0) rotateZ(-4deg)}50%{transform:translateY(-16px) rotateZ(4deg)}}
+@keyframes fpop{0%{transform:scale(1.16)}38%{transform:scale(.82) rotate(10deg)}70%{transform:scale(1.22) rotate(-3deg)}100%{transform:scale(1)}}
+#loader.done .float-wrap{transition:transform .8s var(--ease),opacity .6s;transform:scale(.5);opacity:0}
 .loader-name{margin-top:30px;font-family:'Bricolage Grotesque';font-weight:700;font-size:1.05rem;letter-spacing:.42em;text-transform:uppercase;color:var(--paper);overflow:hidden}
 .loader-name span{display:inline-block;transform:translateY(110%);opacity:0}
 .loader-status{margin-top:14px;height:1.2em;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(246,243,237,.55);font-weight:500}
