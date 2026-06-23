@@ -1,28 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 640" fill="none">
   <defs>
-    <linearGradient id="p03bg" x1="600" y1="0" x2="600" y2="675" gradientUnits="userSpaceOnUse">
+    <linearGradient id="bg3" x1="180" y1="0" x2="180" y2="640" gradientUnits="userSpaceOnUse">
       <stop stop-color="#0f1f3d"/>
-      <stop offset="1" stop-color="#3a2940"/>
+      <stop offset="1" stop-color="#2a1f38"/>
     </linearGradient>
   </defs>
-  <rect width="1200" height="675" fill="url(#p03bg)"/>
-  <rect width="1200" height="4" fill="#5ba8d4"/>
-  <line x1="150" y1="340" x2="1050" y2="340" stroke="#f6f3ed" stroke-opacity=".15" stroke-width="3" stroke-dasharray="8 8"/>
-  <circle cx="200" cy="340" r="16" fill="#159e8e"/>
-  <rect x="130" y="200" width="140" height="100" rx="12" fill="#f6f3ed"/>
-  <text x="200" y="260" text-anchor="middle" fill="#159e8e" font-family="Arial,sans-serif" font-size="22" font-weight="700">J1</text>
-  <circle cx="420" cy="340" r="16" fill="#d4b483"/>
-  <rect x="350" y="380" width="140" height="100" rx="12" fill="#f6f3ed"/>
-  <text x="420" y="440" text-anchor="middle" fill="#d4b483" font-family="Arial,sans-serif" font-size="22" font-weight="700">J15</text>
-  <circle cx="640" cy="340" r="16" fill="#5ba8d4"/>
-  <rect x="570" y="200" width="140" height="100" rx="12" fill="#f6f3ed"/>
-  <text x="640" y="260" text-anchor="middle" fill="#5ba8d4" font-family="Arial,sans-serif" font-size="22" font-weight="700">J30</text>
-  <circle cx="860" cy="340" r="16" fill="#1a3054"/>
-  <rect x="790" y="380" width="140" height="100" rx="12" fill="#f6f3ed"/>
-  <text x="860" y="440" text-anchor="middle" fill="#1a3054" font-family="Arial,sans-serif" font-size="22" font-weight="700">J45</text>
-  <circle cx="1000" cy="340" r="20" fill="#159e8e" stroke="#f6f3ed" stroke-width="3"/>
-  <rect x="180" y="520" width="840" height="100" rx="16" fill="#f6f3ed" fill-opacity=".06" stroke="#f6f3ed" stroke-opacity=".1"/>
-  <text x="600" y="560" text-anchor="middle" fill="#f6f3ed" font-family="Arial,sans-serif" font-size="24" font-weight="700">12 livrables - 0 retard</text>
-  <text x="600" y="590" text-anchor="middle" fill="#f6f3ed" fill-opacity=".45" font-family="Arial,sans-serif" font-size="13">Campagne 360 Multi-equipes Budget maitrise</text>
+  <rect width="360" height="640" fill="url(#bg3)"/>
+  <rect x="0" y="0" width="360" height="4" fill="#5ba8d4"/>
+  <text x="32" y="72" fill="#f6f3ed" fill-opacity=".7" font-family="system-ui,sans-serif" font-size="11" font-weight="600" letter-spacing=".12em">CAMPAGNE 360</text>
+  <text x="32" y="108" fill="#f6f3ed" font-family="system-ui,sans-serif" font-size="24" font-weight="800">12 livrables</text>
+  <text x="32" y="136" fill="#159e8e" font-family="system-ui,sans-serif" font-size="16" font-weight="700">0 retard</text>
+  <line x1="64" y1="180" x2="64" y2="520" stroke="#f6f3ed" stroke-opacity=".15" stroke-width="2" stroke-dasharray="6 8"/>
+  <g font-family="system-ui,sans-serif" font-weight="700">
+    <circle cx="64" cy="200" r="12" fill="#159e8e"/>
+    <rect x="88" y="176" width="248" height="48" rx="14" fill="#f6f3ed" fill-opacity=".08" stroke="#f6f3ed" stroke-opacity=".1"/>
+    <text x="108" y="206" fill="#f6f3ed" font-size="14">J1 · Kick-off</text>
+    <circle cx="64" cy="280" r="12" fill="#d4b483"/>
+    <rect x="88" y="256" width="248" height="48" rx="14" fill="#f6f3ed" fill-opacity=".08" stroke="#f6f3ed" stroke-opacity=".1"/>
+    <text x="108" y="286" fill="#f6f3ed" font-size="14">J15 · Production</text>
+    <circle cx="64" cy="360" r="12" fill="#5ba8d4"/>
+    <rect x="88" y="336" width="248" height="48" rx="14" fill="#f6f3ed" fill-opacity=".08" stroke="#f6f3ed" stroke-opacity=".1"/>
+    <text x="108" y="366" fill="#f6f3ed" font-size="14">J30 · Diffusion</text>
+    <circle cx="64" cy="440" r="14" fill="#159e8e" stroke="#f6f3ed" stroke-width="2"/>
+    <rect x="88" y="416" width="248" height="48" rx="14" fill="#f6f3ed" fill-opacity=".12" stroke="#159e8e" stroke-opacity=".4"/>
+    <text x="108" y="446" fill="#f6f3ed" font-size="14">J45 · Bilan</text>
+  </g>
+  <rect x="24" y="536" width="312" height="72" rx="18" fill="#f6f3ed" fill-opacity=".06" stroke="#f6f3ed" stroke-opacity=".1"/>
+  <text x="48" y="568" fill="#f6f3ed" font-family="system-ui,sans-serif" font-size="13" font-weight="600">Multi-équipes</text>
+  <text x="48" y="590" fill="#f6f3ed" fill-opacity=".55" font-family="system-ui,sans-serif" font-size="11">Budget maîtrisé, suivi hebdo</text>
 </svg>

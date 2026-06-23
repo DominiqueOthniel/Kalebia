@@ -203,12 +203,6 @@
       }
     }
 
-    var track = document.getElementById('marquee-track');
-    if (track && data.marquee && data.marquee.length) {
-      var items = data.marquee.concat(data.marquee);
-      track.innerHTML = items.map(function(t){ return '<span>' + esc(t) + '</span>'; }).join('');
-    }
-
     setText('apropos-title', data.about && data.about.title);
     setText('about-synergy', data.about && data.about.synergy);
 

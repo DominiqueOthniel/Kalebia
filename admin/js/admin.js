@@ -195,15 +195,8 @@
       field('Phrase d\'accroche (thesis)', input('hero.thesis', site.hero.thesis)) +
       field('Headline CM', input('hero.headline', site.hero.headline)) +
       field('Texte d\'introduction', textarea('hero.lede', site.hero.lede)) +
-      '</div>' +
-      '<div class="card"><h2>Bandeau défilant</h2><p style="color:var(--ink-soft);font-size:.9rem;margin-bottom:12px">Un élément par ligne.</p>' +
-      field('Éléments', textarea('marquee-text', (site.marquee || []).join('\n'))) +
       '</div>';
     bindPanel($('panel-hero'));
-    $('panel-hero').querySelector('[data-path="marquee-text"]').addEventListener('input', function(e){
-      site.marquee = e.target.value.split('\n').map(function(s){ return s.trim(); }).filter(Boolean);
-      markDirty();
-    });
   }
 
   function renderAbout(){

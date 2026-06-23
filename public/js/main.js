@@ -496,8 +496,176 @@
     try { count = parseInt(localStorage.getItem('knf_orbit') || '0', 10) || 0; } catch (e) {}
     if (countEl) countEl.textContent = count;
 
-    if (!reduce && !touch) {
-      var raf = null, lastE = null;
+    var bodies = [];
+    var lastE = null;
+    var lastT = 0;
+    var physicsOn = !reduce;
+
+    function parsePct(v, total){
+      if (!v) return 0;
+      v = String(v).trim();
+      if (v.slice(-1) === '%') return parseFloat(v) / 100 * total;
+      return parseFloat(v) || 0;
+    }
+
+    function mobScale(width){
+      if (width < 380) return 0.6;
+      if (width < 600) return 0.7;
+      if (width < 920) return 0.84;
+      return 1;
+    }
+
+    function initBodies(){
+      var w = stage.clientWidth;
+      var h = stage.clientHeight;
+      var scale = mobScale(w);
+      var prevV = bodies.map(function(b){ return { vx: b.vx, vy: b.vy }; });
+      bodies = chips.map(function(chip, i){
+        var st = chip.style;
+        var baseSz = parseFloat(st.getPropertyValue('--sz')) || chip.offsetWidth || 72;
+        var sz = baseSz * scale;
+        var depth = parseFloat(chip.dataset.depth || '1');
+        var x = parsePct(st.getPropertyValue('--x'), w) + sz * 0.5;
+        var y = parsePct(st.getPropertyValue('--y'), h) + sz * 0.5;
+        chip.style.left = '0';
+        chip.style.top = '0';
+        chip.style.width = sz + 'px';
+        chip.style.height = sz + 'px';
+        var pv = prevV[i];
+        return {
+          el: chip,
+          floaty: chip.querySelector('.floaty'),
+          x: x,
+          y: y,
+          vx: pv ? pv.vx : (Math.random() - 0.5) * 1.1,
+          vy: pv ? pv.vy : (Math.random() - 0.5) * 1.1,
+          r: sz * 0.5,
+          m: sz * depth,
+          phase: Math.random() * Math.PI * 2,
+          depth: depth
+        };
+      });
+    }
+
+    function collide(a, b){
+      var dx = b.x - a.x;
+      var dy = b.y - a.y;
+      var dist = Math.sqrt(dx * dx + dy * dy);
+      var minD = a.r + b.r;
+      if (dist >= minD || dist === 0) return;
+      var nx = dx / dist;
+      var ny = dy / dist;
+      var overlap = minD - dist;
+      var invMass = 1 / a.m + 1 / b.m;
+      a.x -= nx * overlap * (b.m / (a.m + b.m));
+      a.y -= ny * overlap * (b.m / (a.m + b.m));
+      b.x += nx * overlap * (a.m / (a.m + b.m));
+      b.y += ny * overlap * (a.m / (a.m + b.m));
+      var dvx = b.vx - a.vx;
+      var dvy = b.vy - a.vy;
+      var dvn = dvx * nx + dvy * ny;
+      if (dvn >= 0) return;
+      var rest = 0.82;
+      var impulse = -(1 + rest) * dvn / invMass;
+      a.vx -= impulse * nx / a.m;
+      a.vy -= impulse * ny / a.m;
+      b.vx += impulse * nx / b.m;
+      b.vy += impulse * ny / b.m;
+    }
+
+    function bounceWalls(b, w, h){
+      var rest = 0.72;
+      if (b.x - b.r < 0) { b.x = b.r; b.vx = Math.abs(b.vx) * rest; }
+      else if (b.x + b.r > w) { b.x = w - b.r; b.vx = -Math.abs(b.vx) * rest; }
+      if (b.y - b.r < 0) { b.y = b.r; b.vy = Math.abs(b.vy) * rest; }
+      else if (b.y + b.r > h) { b.y = h - b.r; b.vy = -Math.abs(b.vy) * rest; }
+    }
+
+    function physicsStep(dt){
+      var w = stage.clientWidth;
+      var h = stage.clientHeight;
+      if (!w || !h) return;
+      var mx = 0, my = 0, hr = null;
+      if (lastE && !touch) {
+        hr = host.getBoundingClientRect();
+        mx = lastE.clientX - hr.left;
+        my = lastE.clientY - hr.top;
+      }
+      var drag = Math.pow(0.985, dt / 16);
+      bodies.forEach(function(b){
+        b.phase += dt * 0.0014;
+        b.vx += Math.sin(b.phase) * 0.028;
+        b.vy += Math.cos(b.phase * 0.87) * 0.024;
+        if (hr) {
+          var dx = b.x - mx;
+          var dy = b.y - my;
+          var dist = Math.sqrt(dx * dx + dy * dy);
+          var R = 150;
+          if (dist < R && dist > 0) {
+            var f = (1 - dist / R) * 3.2 * b.depth;
+            b.vx += dx / dist * f;
+            b.vy += dy / dist * f;
+          }
+        }
+        b.vx *= drag;
+        b.vy *= drag;
+        var spd = Math.sqrt(b.vx * b.vx + b.vy * b.vy);
+        var maxSpd = 2.8;
+        if (spd > maxSpd) { b.vx = b.vx / spd * maxSpd; b.vy = b.vy / spd * maxSpd; }
+        b.x += b.vx * (dt / 16);
+        b.y += b.vy * (dt / 16);
+        bounceWalls(b, w, h);
+      });
+      for (var pass = 0; pass < 4; pass++) {
+        for (var i = 0; i < bodies.length; i++) {
+          for (var j = i + 1; j < bodies.length; j++) collide(bodies[i], bodies[j]);
+        }
+      }
+      bodies.forEach(function(b){
+        var bob = Math.sin(b.phase * 2.1) * 4;
+        var tiltX = Math.max(-14, Math.min(14, -b.vy * 2.2));
+        var tiltZ = Math.max(-12, Math.min(12, b.vx * 2.6));
+        b.el.style.transform = 'translate(' + (b.x - b.r).toFixed(2) + 'px,' + (b.y - b.r + bob).toFixed(2) + 'px)';
+        if (b.floaty) b.floaty.style.transform = 'rotateX(' + tiltX.toFixed(2) + 'deg) rotateZ(' + tiltZ.toFixed(2) + 'deg)';
+      });
+    }
+
+    function physicsLoop(now){
+      if (!physicsOn) return;
+      if (!lastT) lastT = now;
+      var dt = Math.min(40, now - lastT);
+      lastT = now;
+      physicsStep(dt);
+      if (lastE && !touch) {
+        var r = host.getBoundingClientRect();
+        var px = (lastE.clientX - r.left) / r.width - 0.5;
+        var py = (lastE.clientY - r.top) / r.height - 0.5;
+        stage.style.transform = 'rotateY(' + (px * 16).toFixed(2) + 'deg) rotateX(' + (-py * 16).toFixed(2) + 'deg)';
+      }
+      requestAnimationFrame(physicsLoop);
+    }
+
+    if (physicsOn) {
+      host.classList.add('physics-on');
+      requestAnimationFrame(function(){
+        initBodies();
+        requestAnimationFrame(physicsLoop);
+      });
+      if (!touch) {
+        host.addEventListener('pointermove', function(e){ lastE = e; });
+        host.addEventListener('pointerleave', function(){
+          lastE = null;
+          stage.style.transform = '';
+        });
+      }
+      var resizeTimer;
+      window.addEventListener('resize', function(){
+        if (!bodies.length) return;
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(initBodies, 120);
+      });
+    } else if (!reduce && !touch) {
+      var raf = null;
       host.addEventListener('pointermove', function(e){ lastE = e; if (!raf) raf = requestAnimationFrame(apply); });
       host.addEventListener('pointerleave', function(){
         lastE = null; stage.style.transform = '';
@@ -526,6 +694,16 @@
       if (countEl) countEl.textContent = count;
       if (meter) { meter.classList.remove('bump'); void meter.offsetWidth; meter.classList.add('bump'); }
       chip.classList.remove('pop'); void chip.offsetWidth; chip.classList.add('pop');
+      if (physicsOn) {
+        var body = null;
+        for (var bi = 0; bi < bodies.length; bi++) {
+          if (bodies[bi].el === chip) { body = bodies[bi]; break; }
+        }
+        if (body) {
+          body.vx += (Math.random() - 0.5) * 4.5;
+          body.vy -= 2.8 + Math.random() * 2.2;
+        }
+      }
       var b = document.createElement('span');
       b.className = 'orbit-burst';
       b.textContent = '+1';
