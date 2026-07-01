@@ -329,21 +329,20 @@
       setText('formations-subtitle', data.formations.subtitle);
       var formGrid = document.getElementById('formations-grid');
       if (formGrid && data.formations.items) {
-        var waMsg = (data.contact && data.contact.whatsappMessage) || 'Bonjour Kalebia, je souhaite m\'inscrire à votre formation sur ';
-        formGrid.innerHTML = data.formations.items.map(function(f){
-          var wa = whatsappUrl(data.profile && data.profile.whatsapp, waMsg + (f.title || ''));
-          var benefits = (f.benefits || []).map(function(b){ return '<li>' + esc(b) + '</li>'; }).join('');
+        formGrid.innerHTML = data.formations.items.map(function(f, i){
+          var slug = f.slug || ('formation-' + (i + 1));
+          var detailUrl = '/formation.html?slug=' + encodeURIComponent(slug);
+          var flyerSrc = f.flyer ? assetUrl(f.flyer) : '';
+          var excerpt = f.excerpt || f.description || '';
           return '<article class="formation-card" data-reveal>' +
+            (flyerSrc ? '<a class="formation-flyer-link" href="' + esc(detailUrl) + '" tabindex="-1" aria-hidden="true">' +
+              '<img class="formation-flyer-img" src="' + esc(flyerSrc) + '" alt="" loading="lazy" width="360" height="480">' +
+            '</a>' : '') +
+            '<div class="formation-card-body">' +
             '<h3>' + esc(f.title) + '</h3>' +
-            '<p>' + esc(f.description) + '</p>' +
-            '<dl class="formation-meta">' +
-            '<div><dt>Public</dt><dd>' + esc(f.audience) + '</dd></div>' +
-            '<div><dt>Durée</dt><dd>' + esc(f.duration) + '</dd></div>' +
-            '<div><dt>Modalité</dt><dd>' + esc(f.modality) + '</dd></div>' +
-            '</dl>' +
-            (benefits ? '<ul class="formation-benefits">' + benefits + '</ul>' : '') +
-            '<a class="btn btn-primary formation-cta" href="' + esc(wa) + '" target="_blank" rel="noopener noreferrer" data-magnetic>Je souhaite participer</a>' +
-            '</article>';
+            '<p class="formation-excerpt">' + esc(excerpt) + '</p>' +
+            '<a class="formation-more" href="' + esc(detailUrl) + '">Voir plus →</a>' +
+            '</div></article>';
         }).join('');
       }
     }

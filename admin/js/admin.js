@@ -518,8 +518,11 @@
     (site.formations.items || []).forEach(function(f, i){
       html += '<div class="list-item"><div class="list-item-head"><strong>' + escHtml(f.title || ('Formation ' + (i+1))) + '</strong>' +
         '<button type="button" class="btn btn-ghost btn-sm" data-remove-formation="' + i + '">Supprimer</button></div>' +
+        field('Slug URL', input('formations.items.' + i + '.slug', f.slug)) +
+        field('Flyer (chemin image)', input('formations.items.' + i + '.flyer', f.flyer), 'Ex. assets/formations/flyer-reseaux-sociaux.svg') +
         field('Titre', input('formations.items.' + i + '.title', f.title)) +
-        field('Description', textarea('formations.items.' + i + '.description', f.description)) +
+        field('Accroche carte', textarea('formations.items.' + i + '.excerpt', f.excerpt || '')) +
+        field('Description complète', textarea('formations.items.' + i + '.description', f.description)) +
         field('Public cible', input('formations.items.' + i + '.audience', f.audience)) +
         field('Durée', input('formations.items.' + i + '.duration', f.duration)) +
         field('Modalité', input('formations.items.' + i + '.modality', f.modality)) +
@@ -537,7 +540,7 @@
     });
     var addBtn = $('add-formation');
     if (addBtn) addBtn.addEventListener('click', function(){
-      site.formations.items.push({ title:'', description:'', audience:'', duration:'', modality:'', benefits:[] });
+      site.formations.items.push({ slug:'', flyer:'', title:'', excerpt:'', description:'', audience:'', duration:'', modality:'', benefits:[] });
       markDirty(); renderFormations();
     });
     document.querySelectorAll('[data-remove-formation]').forEach(function(btn){

@@ -194,7 +194,9 @@
     "items": [
       {
         "slug": "maitriser-reseaux-sociaux",
+        "flyer": "assets/formations/flyer-reseaux-sociaux.svg",
         "title": "Comment maîtriser les réseaux sociaux",
+        "excerpt": "Structurer votre présence, créer du contenu engageant et analyser vos performances sur les principales plateformes.",
         "description": "Apprenez à structurer votre présence, créer du contenu engageant et analyser vos performances sur les principales plateformes.",
         "audience": "Entrepreneurs, créateurs, débutants en social media",
         "duration": "4 semaines",
@@ -207,7 +209,9 @@
       },
       {
         "slug": "reussir-community-management",
+        "flyer": "assets/formations/flyer-community-management.svg",
         "title": "Réussir en Community Management",
+        "excerpt": "De la stratégie à l'animation quotidienne : devenez un community manager opérationnel et crédible.",
         "description": "De la stratégie à l'animation quotidienne : tout ce qu'il faut pour devenir un community manager opérationnel et crédible.",
         "audience": "Futurs CM, freelances, responsables communication",
         "duration": "6 semaines",
