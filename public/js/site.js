@@ -353,12 +353,12 @@
       var blogGrid = document.getElementById('blog-grid');
       if (blogGrid && data.blog.items) {
         blogGrid.innerHTML = data.blog.items.map(function(post){
+          var detailUrl = '/article.html?slug=' + encodeURIComponent(post.slug || '');
           return '<article class="blog-card" data-reveal>' +
             '<time datetime="' + esc(post.date) + '">' + esc(post.date) + ', ' + esc(post.readTime || '') + '</time>' +
             '<h3>' + esc(post.title) + '</h3>' +
             '<p>' + esc(post.excerpt) + '</p>' +
-            '<button type="button" class="blog-read" data-blog-slug="' + esc(post.slug) + '">Lire l\'article →</button>' +
-            '<div class="blog-body hidden" id="blog-' + esc(post.slug) + '">' + esc(post.body || '').replace(/\n/g, '<br>') + '</div>' +
+            '<a class="blog-read" href="' + esc(detailUrl) + '">Lire l\'article →</a>' +
             '</article>';
         }).join('');
       }

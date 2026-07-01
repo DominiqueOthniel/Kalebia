@@ -203,24 +203,6 @@
     });
   }
 
-  function initBlogRead(){
-    document.querySelectorAll('.blog-read:not([data-blog-bound])').forEach(function(btn){
-      btn.dataset.blogBound = '1';
-      btn.addEventListener('click', function(){
-        var slug = btn.dataset.blogSlug;
-        var body = document.getElementById('blog-' + slug);
-        if (!body) return;
-        var open = !body.classList.contains('hidden');
-        document.querySelectorAll('.blog-body').forEach(function(b){ b.classList.add('hidden'); });
-        document.querySelectorAll('.blog-read').forEach(function(b){ b.textContent = 'Lire l\'article →'; });
-        if (!open) {
-          body.classList.remove('hidden');
-          btn.textContent = 'Fermer ↑';
-        }
-      });
-    });
-  }
-
   function initTestimonialForm(){
     var form = document.getElementById('testimonialForm');
     var starInput = document.getElementById('starInput');
@@ -289,7 +271,6 @@
     bindImageFallbacks();
     initActiveNav();
     initThemeToggle();
-    initBlogRead();
     initTestimonialForm();
     observeReveals();
     observeCounters();
