@@ -425,7 +425,7 @@
           if (item.url) return '<a class="trusted-card-link" href="' + esc(item.url) + '" target="_blank" rel="noopener noreferrer">' + inner + '</a>';
           return inner;
         }).join('');
-        trustedTrack.innerHTML = cards + cards;
+        trustedTrack.innerHTML = cards + (window.matchMedia('(max-width: 600px)').matches ? '' : cards);
       }
       var trustedGrid = document.getElementById('trusted-grid');
       if (trustedGrid && data.partners.items) {

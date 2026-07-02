@@ -277,6 +277,7 @@
   }
 
   /* ---------- PRELOADER ---------- */
+  var INTRO_KEY = 'knf_intro_seen';
   var loader = document.getElementById('loader');
   var ring = document.getElementById('ringfg');
   var pctn = document.getElementById('pctn');
@@ -286,10 +287,54 @@
   var statuses = ['Connexion à la communauté…','Synchronisation du calendrier…','Chargement de l\u2019engagement…','Alignement des parties prenantes…','Préparation du tableau de bord…'];
   var done = false;
 
+  function hasSeenIntro(){
+    try { return sessionStorage.getItem(INTRO_KEY) === '1'; } catch (e) { return false; }
+  }
+
+  function markIntroSeen(){
+    try {
+      sessionStorage.setItem(INTRO_KEY, '1');
+      document.documentElement.classList.add('intro-skip');
+    } catch (e) {}
+  }
+
+  function skipIntro(){
+    if (done) return;
+    done = true;
+    if (loader) {
+      loader.classList.add('done');
+      loader.style.display = 'none';
+    }
+    document.body.classList.remove('loading');
+    document.body.classList.add('ready');
+    document.querySelectorAll('.hero .up').forEach(function(el){ el.classList.add('go'); });
+  }
+
+  function scrollToHash(instant){
+    var hash = location.hash;
+    if (!hash || hash.length < 2) return;
+    var id = decodeURIComponent(hash.slice(1));
+    if (id === 'top') {
+      window.scrollTo({ top: 0, behavior: instant || reduce ? 'auto' : 'smooth' });
+      return;
+    }
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.scrollIntoView({ behavior: instant || reduce ? 'auto' : 'smooth', block: 'start' });
+  }
+
+  function scheduleHashScroll(instant){
+    if (!location.hash || location.hash.length < 2) return;
+    requestAnimationFrame(function(){
+      requestAnimationFrame(function(){ scrollToHash(instant); });
+    });
+  }
+
   function finishLoad(){
     if (done) return;
     done = true;
-    loader.classList.add('done');
+    markIntroSeen();
+    if (loader) loader.classList.add('done');
     document.body.classList.remove('loading');
     document.body.classList.add('ready');
     document.querySelectorAll('.hero .up').forEach(function(el,i){
@@ -297,6 +342,7 @@
     });
     setTimeout(function(){ animateHeatmap(); drawSpark(); startScramble(); }, 360);
     setTimeout(function(){ if (loader && loader.parentNode) loader.style.display = 'none'; }, 1300);
+    setTimeout(function(){ scheduleHashScroll(false); }, 1400);
   }
 
   function buildHeatmap(){
@@ -342,9 +388,12 @@
   function bootPreloader(){
     buildHeatmap();
     if (location.protocol === 'file:') {
-      document.body.classList.remove('loading');
-      document.body.classList.add('ready');
-      if (loader) loader.style.display = 'none';
+      skipIntro();
+      markIntroSeen();
+      return;
+    }
+    if (document.documentElement.classList.contains('intro-skip') || hasSeenIntro()) {
+      skipIntro();
       return;
     }
     if (reduce) {
@@ -719,8 +768,16 @@
   window.loadSiteData().then(function(data){
     if (window.renderSite) window.renderSite(data);
     initApp();
+    scheduleHashScroll(hasSeenIntro());
   }).catch(function(){
     initApp();
+    scheduleHashScroll(hasSeenIntro());
+  });
+
+  window.addEventListener('pageshow', function(e){
+    if (!e.persisted) return;
+    skipIntro();
+    scheduleHashScroll(true);
   });
 
   if (!touch && !reduce) {

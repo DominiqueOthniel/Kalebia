@@ -29,8 +29,23 @@
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/css/style.css">
 <script type="application/ld+json" id="ld-json">{}</script>
+<script>
+try {
+  if (sessionStorage.getItem('knf_intro_seen') === '1') {
+    document.documentElement.classList.add('intro-skip');
+  }
+} catch (e) {}
+</script>
 </head>
 <body class="loading">
+<script>
+(function(){
+  if (document.documentElement.classList.contains('intro-skip')) {
+    document.body.classList.remove('loading');
+    document.body.classList.add('ready');
+  }
+})();
+</script>
 
 <a href="#top" class="skip-link">Aller au contenu principal</a>
 
@@ -273,7 +288,7 @@
 </section>
 
 <section class="block contact" id="contact" aria-labelledby="contact-title">
-  <div class="wrap" data-reveal>
+  <div class="wrap">
     <span class="eyebrow" style="justify-content:center">Contact</span>
     <h2 id="contact-title">Construisons votre <span class="serif">communauté</span>.</h2>
     <p id="contact-lede">Un projet, une campagne ou une communauté à faire grandir ? Parlons-en.</p>

@@ -1,6 +1,8 @@
 (function(){
   'use strict';
 
+  try { sessionStorage.setItem('knf_intro_seen', '1'); } catch (e) {}
+
   function esc(s) {
     if (s == null) return '';
     return String(s)
