@@ -33,6 +33,9 @@
 try {
   if (sessionStorage.getItem('knf_intro_seen') === '1') {
     document.documentElement.classList.add('intro-skip');
+    if (location.hash && location.hash.length > 1) {
+      document.documentElement.classList.add('hash-return');
+    }
   }
 } catch (e) {}
 </script>
@@ -281,7 +284,7 @@ try {
       <h2 id="trusted-title">Ils m’ont fait confiance.</h2>
       <p id="trusted-subtitle">Entreprises, marques et partenaires avec lesquels j’ai collaboré.</p>
     </div>
-    <div class="trusted-marquee" id="trusted-marquee" aria-label="Logos partenaires défilants">
+    <div class="trusted-logos" id="trusted-marquee" aria-label="Logos partenaires">
       <div class="trusted-track" id="trusted-track"></div>
     </div>
   </div>
@@ -292,12 +295,13 @@ try {
     <span class="eyebrow" style="justify-content:center">Contact</span>
     <h2 id="contact-title">Construisons votre <span class="serif">communauté</span>.</h2>
     <p id="contact-lede">Un projet, une campagne ou une communauté à faire grandir ? Parlons-en.</p>
-    <div class="contact-actions">
-      <a href="mailto:bonjour@kalebia.dev" id="contact-email" class="btn btn-primary" data-magnetic data-cursor>bonjour@kalebia.dev</a>
-      <a href="#" id="contact-whatsapp" class="btn btn-whatsapp" data-magnetic data-cursor target="_blank" rel="noopener noreferrer">Me contacter sur WhatsApp</a>
-      <a href="assets/CV-Kalebia-Nyoue-Franck.pdf" id="cv-link" class="btn btn-ghost" data-magnetic data-cursor download>Télécharger le CV</a>
+    <div class="contact-panel">
+      <div class="contact-actions">
+        <a href="mailto:bonjour@kalebia.dev" id="contact-email" class="btn btn-primary" data-magnetic data-cursor>bonjour@kalebia.dev</a>
+        <a href="#" id="contact-whatsapp" class="btn btn-whatsapp" data-magnetic data-cursor target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      </div>
+      <a href="assets/CV-Kalebia-Nyoue-Franck.pdf" id="cv-link" class="contact-cv" data-magnetic data-cursor download>Télécharger le CV</a>
     </div>
-    <nav class="socials" id="socials" aria-label="Réseaux sociaux"></nav>
   </div>
 </section>
 </main>
@@ -314,6 +318,21 @@ try {
   <img src="/assets/social/whatsapp.svg" alt="" width="28" height="28">
 </a>
 
+<script>
+(function(){
+  if (!document.documentElement.classList.contains('hash-return')) return;
+  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  var hash = location.hash;
+  if (!hash || hash.length < 2) return;
+  var id = decodeURIComponent(hash.slice(1));
+  if (id === 'top') {
+    window.scrollTo(0, 0);
+    return;
+  }
+  var el = document.getElementById(id);
+  if (el) el.scrollIntoView({ block: 'start' });
+})();
+</script>
 <script src="/js/site-data.js"></script>
 <script src="/js/site.js"></script>
 <script src="/js/main.js"></script>

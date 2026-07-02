@@ -291,6 +291,10 @@
     try { return sessionStorage.getItem(INTRO_KEY) === '1'; } catch (e) { return false; }
   }
 
+  function isHashReturn(){
+    return document.documentElement.classList.contains('hash-return');
+  }
+
   function markIntroSeen(){
     try {
       sessionStorage.setItem(INTRO_KEY, '1');
@@ -314,19 +318,24 @@
     var hash = location.hash;
     if (!hash || hash.length < 2) return;
     var id = decodeURIComponent(hash.slice(1));
+    var behavior = instant || reduce || isHashReturn() ? 'auto' : 'smooth';
     if (id === 'top') {
-      window.scrollTo({ top: 0, behavior: instant || reduce ? 'auto' : 'smooth' });
+      window.scrollTo({ top: 0, behavior: behavior });
       return;
     }
     var el = document.getElementById(id);
     if (!el) return;
-    el.scrollIntoView({ behavior: instant || reduce ? 'auto' : 'smooth', block: 'start' });
+    el.scrollIntoView({ behavior: behavior, block: 'start' });
   }
 
   function scheduleHashScroll(instant){
     if (!location.hash || location.hash.length < 2) return;
+    if (instant || isHashReturn()) {
+      scrollToHash(true);
+      return;
+    }
     requestAnimationFrame(function(){
-      requestAnimationFrame(function(){ scrollToHash(instant); });
+      requestAnimationFrame(function(){ scrollToHash(false); });
     });
   }
 
@@ -768,10 +777,10 @@
   window.loadSiteData().then(function(data){
     if (window.renderSite) window.renderSite(data);
     initApp();
-    scheduleHashScroll(hasSeenIntro());
+    scheduleHashScroll(true);
   }).catch(function(){
     initApp();
-    scheduleHashScroll(hasSeenIntro());
+    scheduleHashScroll(true);
   });
 
   window.addEventListener('pageshow', function(e){

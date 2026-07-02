@@ -89,23 +89,26 @@
 
   function renderSocialLinks(container, items) {
     if (!container || !items) return;
+    var iconOnly = container.id === 'foot-socials';
     container.innerHTML = '';
     items.forEach(function(item){
       if (!item.url) return;
       var label = item.label || item.id || 'Réseau social';
       var a = document.createElement('a');
       a.href = item.url;
-      a.className = container.id === 'foot-socials' ? 'foot-social-link' : 'social-link';
+      a.className = iconOnly ? 'foot-social-link' : 'social-link';
       a.target = '_blank';
       a.rel = 'noopener noreferrer';
       a.setAttribute('aria-label', label);
       a.title = label;
-      if (container.id !== 'foot-socials') a.setAttribute('data-cursor', '');
+      if (!iconOnly && container.id !== 'foot-socials') a.setAttribute('data-cursor', '');
       var icon = socialIconPath(item.id);
       if (icon) {
-        a.innerHTML = '<img src="' + esc(assetUrl(icon)) + '" alt="" width="22" height="22" loading="lazy" decoding="async">' +
-          (container.id !== 'foot-socials' ? '<span class="social-label">' + esc(label) + '</span>' : '');
-      } else {
+        a.innerHTML = '<img src="' + esc(assetUrl(icon)) + '" alt="" width="20" height="20" loading="lazy" decoding="async">';
+        if (!iconOnly) {
+          a.innerHTML += '<span class="social-label">' + esc(label) + '</span>';
+        }
+      } else if (!iconOnly) {
         a.innerHTML = '<span class="social-label">' + esc(label) + '</span>';
       }
       container.appendChild(a);
@@ -425,7 +428,7 @@
           if (item.url) return '<a class="trusted-card-link" href="' + esc(item.url) + '" target="_blank" rel="noopener noreferrer">' + inner + '</a>';
           return inner;
         }).join('');
-        trustedTrack.innerHTML = cards + (window.matchMedia('(max-width: 600px)').matches ? '' : cards);
+        trustedTrack.innerHTML = cards;
       }
       var trustedGrid = document.getElementById('trusted-grid');
       if (trustedGrid && data.partners.items) {
@@ -466,9 +469,8 @@
     var waFloat = document.getElementById('wa-float');
     if (waFloat) waFloat.href = waLink;
 
-    var socials = document.getElementById('socials');
-    renderSocialLinks(socials, data.social);
-    renderSocialLinks(document.getElementById('foot-socials'), data.social);
+    var footSocials = document.getElementById('foot-socials');
+    renderSocialLinks(footSocials, data.social);
 
     var footLoc = document.getElementById('foot-location');
     if (footLoc) footLoc.textContent = name + ', Douala, Cameroun';
